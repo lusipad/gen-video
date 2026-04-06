@@ -1,0 +1,4 @@
+interface:
+  display_name: "镜界.SKILL"
+  short_description: "生成剧本、分镜、提示词与 Flow 操作包"
+  default_prompt: "使用 $gen-video，把这个故事改写成按模型与平台分流的剧本、素材清单、图片提示词、视频提示词和执行操作包。"
