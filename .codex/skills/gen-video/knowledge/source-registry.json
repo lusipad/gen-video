@@ -1,0 +1,172 @@
+{
+  "tracked_sources": [
+    {
+      "id": "karpathy-llm-wiki",
+      "title": "Karpathy gist on raw knowledge base and LLM wiki",
+      "author": "Andrej Karpathy",
+      "url": "https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f",
+      "source_type": "gist",
+      "captured_at": "2026-04-06",
+      "published_at": "",
+      "volatility": "cold",
+      "scope": "knowledge-management",
+      "status": "active-reference",
+      "review_every_days": 30,
+      "last_reviewed_at": "2026-04-06",
+      "compiled_into": [
+        "knowledge/wiki/concepts/skill-as-orchestrator.md",
+        "knowledge/wiki/concepts/promotion-and-retirement.md",
+        "knowledge/wiki/workflows/refresh-loop.md"
+      ],
+      "capture": {
+        "mode": "http-metadata"
+      }
+    },
+    {
+      "id": "google-flow-home",
+      "title": "Flow",
+      "author": "Google Labs",
+      "url": "https://labs.google/fx/tools/flow",
+      "source_type": "official-docs",
+      "captured_at": "2026-04-06",
+      "published_at": "",
+      "volatility": "hot",
+      "scope": "google-flow",
+      "status": "active-reference",
+      "review_every_days": 7,
+      "last_reviewed_at": "2026-04-06",
+      "compiled_into": [
+        "profiles/google-flow.md",
+        "references/google-flow-notes.md"
+      ],
+      "capture": {
+        "mode": "http-metadata"
+      }
+    },
+    {
+      "id": "veo-model-home",
+      "title": "Veo",
+      "author": "Google DeepMind",
+      "url": "https://deepmind.google/models/veo/",
+      "source_type": "official-docs",
+      "captured_at": "2026-04-06",
+      "published_at": "",
+      "volatility": "hot",
+      "scope": "veo",
+      "status": "active-reference",
+      "review_every_days": 7,
+      "last_reviewed_at": "2026-04-06",
+      "compiled_into": [
+        "profiles/veo-nano-banana.md",
+        "references/veo-nano-banana-notes.md"
+      ],
+      "capture": {
+        "mode": "http-metadata"
+      }
+    },
+    {
+      "id": "gemini-31-flash-image-model-card",
+      "title": "Gemini 3.1 Flash Image - Model Card",
+      "author": "Google DeepMind",
+      "url": "https://deepmind.google/models/model-cards/gemini-3-1-flash-image/",
+      "source_type": "official-docs",
+      "captured_at": "2026-04-06",
+      "published_at": "",
+      "volatility": "hot",
+      "scope": "nano-banana-2",
+      "status": "active-reference",
+      "review_every_days": 7,
+      "last_reviewed_at": "2026-04-06",
+      "compiled_into": [
+        "profiles/veo-nano-banana.md",
+        "references/veo-nano-banana-notes.md"
+      ],
+      "capture": {
+        "mode": "http-metadata"
+      }
+    },
+    {
+      "id": "gemini-25-flash-image-blog",
+      "title": "Introducing Gemini 2.5 Flash Image, our state-of-the-art image model",
+      "author": "Google Developers Blog",
+      "url": "https://developers.googleblog.com/introducing-gemini-2-5-flash-image/",
+      "source_type": "official-blog",
+      "captured_at": "2026-04-06",
+      "published_at": "2025-08-26",
+      "volatility": "warm",
+      "scope": "nano-banana",
+      "status": "active-reference",
+      "review_every_days": 21,
+      "last_reviewed_at": "2026-04-06",
+      "compiled_into": [
+        "profiles/veo-nano-banana.md",
+        "references/veo-nano-banana-notes.md"
+      ],
+      "capture": {
+        "mode": "http-metadata"
+      }
+    },
+    {
+      "id": "seedance-home",
+      "title": "Seedance",
+      "author": "ByteDance Seed Team",
+      "url": "https://seed.bytedance.com/en/seedance",
+      "source_type": "official-docs",
+      "captured_at": "2026-04-06",
+      "published_at": "",
+      "volatility": "hot",
+      "scope": "seedance",
+      "status": "active-reference",
+      "review_every_days": 7,
+      "last_reviewed_at": "2026-04-06",
+      "compiled_into": [
+        "profiles/seedance.md",
+        "references/seedance-playbook.md"
+      ],
+      "capture": {
+        "mode": "http-metadata"
+      }
+    },
+    {
+      "id": "seedance-20-launch",
+      "title": "Seedance 2.0 Official Launch",
+      "author": "ByteDance Seed Team",
+      "url": "https://seed.bytedance.com/en/blog/official-launch-of-seedance-2-0",
+      "source_type": "official-blog",
+      "captured_at": "2026-04-06",
+      "published_at": "2026-02-12",
+      "volatility": "hot",
+      "scope": "seedance",
+      "status": "active-reference",
+      "review_every_days": 7,
+      "last_reviewed_at": "2026-04-06",
+      "compiled_into": [
+        "profiles/seedance.md",
+        "references/seedance-playbook.md"
+      ],
+      "capture": {
+        "mode": "http-metadata"
+      }
+    },
+    {
+      "id": "sentrysearch",
+      "title": "SentrySearch",
+      "author": "ssrajadh",
+      "url": "https://github.com/ssrajadh/sentrysearch",
+      "source_type": "github-repo",
+      "captured_at": "2026-04-07",
+      "published_at": "",
+      "volatility": "warm",
+      "scope": "local-video-search",
+      "status": "active-reference",
+      "review_every_days": 30,
+      "last_reviewed_at": "2026-04-07",
+      "compiled_into": [
+        "knowledge/wiki/workflows/local-video-retrieval.md"
+      ],
+      "capture": {
+        "mode": "http-metadata"
+      }
+    }
+  ]
+}

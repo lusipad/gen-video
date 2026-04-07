@@ -1,0 +1,48 @@
+{
+  "items": [
+    {
+      "known_state": "new",
+      "matched_keywords": [
+        "gemini"
+      ],
+      "owner_type": "community",
+      "published_at": "1775517525",
+      "review_into": [
+        "knowledge/wiki/concepts/karpathy-gap-analysis.md",
+        "knowledge/source-registry.json"
+      ],
+      "source_id": "hackernews",
+      "source_kind": "hackernews",
+      "source_title": "Hacker News",
+      "summary": "",
+      "title": "An experiment in voice text editing with Gemini Live",
+      "url": "https://public.grugnotes.com/keizo/blog/text-editing-at-the-speed-of-thought/"
+    },
+    {
+      "known_state": "new",
+      "matched_keywords": [
+        "flow"
+      ],
+      "owner_type": "community",
+      "published_at": "1775518298",
+      "review_into": [
+        "knowledge/wiki/concepts/karpathy-gap-analysis.md",
+        "knowledge/source-registry.json"
+      ],
+      "source_id": "hackernews",
+      "source_kind": "hackernews",
+      "source_title": "Hacker News",
+      "summary": "",
+      "title": "I Deploy Apps to My Homelab (A Love Story in 9 Acts)",
+      "url": "https://blog.laurentcharignon.com/post/2025-12-14-homelab-deployment-flow/"
+    }
+  ],
+  "summary": {
+    "candidate_items": 0,
+    "human_gate": "manual-admit",
+    "issue_inbox_items": 0,
+    "new_items": 2,
+    "total_items": 2,
+    "tracked_items": 0
+  }
+}

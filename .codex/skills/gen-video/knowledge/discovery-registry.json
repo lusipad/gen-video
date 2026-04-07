@@ -1,0 +1,204 @@
+{
+  "watchlists": [
+    {
+      "id": "deepmind-blog",
+      "title": "Google DeepMind Blog",
+      "owner_type": "official",
+      "url": "https://deepmind.google/blog/",
+      "mode": "html-links",
+      "allowed_domains": [
+        "deepmind.google"
+      ],
+      "include_url_patterns": [
+        "/discover/blog/",
+        "/blog/"
+      ],
+      "exclude_url_patterns": [
+        "/blog/$"
+      ],
+      "keywords": [
+        "veo",
+        "video",
+        "image",
+        "flow",
+        "filmmaking"
+      ],
+      "max_candidates": 8,
+      "promote_into": [
+        "profiles/veo-nano-banana.md",
+        "references/veo-nano-banana-notes.md"
+      ]
+    },
+    {
+      "id": "google-developers-blog",
+      "title": "Google Developers Blog",
+      "owner_type": "official",
+      "url": "https://developers.googleblog.com/",
+      "mode": "html-links",
+      "allowed_domains": [
+        "developers.googleblog.com"
+      ],
+      "include_url_patterns": [
+        "/"
+      ],
+      "exclude_url_patterns": [
+        "/search/",
+        "/feeds/"
+      ],
+      "keywords": [
+        "video",
+        "image",
+        "flow",
+        "filmmaking"
+      ],
+      "max_candidates": 8,
+      "promote_into": [
+        "profiles/google-flow.md",
+        "profiles/veo-nano-banana.md"
+      ]
+    },
+    {
+      "id": "runway-news",
+      "title": "Runway News",
+      "owner_type": "official",
+      "url": "https://runwayml.com/news",
+      "mode": "html-links",
+      "allowed_domains": [
+        "runwayml.com"
+      ],
+      "include_url_patterns": [
+        "/news/"
+      ],
+      "exclude_url_patterns": [
+        "/news$",
+        "/news/$"
+      ],
+      "keywords": [
+        "gen-4",
+        "gen-3",
+        "video",
+        "image",
+        "world model",
+        "camera"
+      ],
+      "max_candidates": 8,
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "id": "luma-news",
+      "title": "Luma News",
+      "owner_type": "official",
+      "url": "https://lumalabs.ai/news",
+      "mode": "html-links",
+      "allowed_domains": [
+        "lumalabs.ai"
+      ],
+      "include_url_patterns": [
+        "/news/"
+      ],
+      "exclude_url_patterns": [
+        "/news$",
+        "/news/$"
+      ],
+      "keywords": [
+        "dream machine",
+        "ray3",
+        "video",
+        "image",
+        "camera",
+        "creative"
+      ],
+      "max_candidates": 8,
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "id": "seed-blog",
+      "title": "ByteDance Seed Blog",
+      "owner_type": "official",
+      "url": "https://seed.bytedance.com/en/blog",
+      "mode": "html-links",
+      "allowed_domains": [
+        "seed.bytedance.com"
+      ],
+      "include_url_patterns": [
+        "/en/blog/"
+      ],
+      "exclude_url_patterns": [
+        "/en/blog$",
+        "/en/blog/$"
+      ],
+      "keywords": [
+        "seedance",
+        "video",
+        "film",
+        "image",
+        "creative"
+      ],
+      "max_candidates": 8,
+      "promote_into": [
+        "profiles/seedance.md",
+        "references/seedance-playbook.md"
+      ]
+    },
+    {
+      "id": "one-useful-thing",
+      "title": "One Useful Thing",
+      "owner_type": "blogger",
+      "url": "https://www.oneusefulthing.org/",
+      "mode": "html-links",
+      "allowed_domains": [
+        "www.oneusefulthing.org"
+      ],
+      "include_url_patterns": [
+        "/p/"
+      ],
+      "exclude_url_patterns": [
+        "/archive",
+        "/about"
+      ],
+      "keywords": [
+        "video",
+        "creative",
+        "movie",
+        "image",
+        "multimodal"
+      ],
+      "max_candidates": 6,
+      "promote_into": [
+        "knowledge/wiki/concepts/skill-as-orchestrator.md"
+      ]
+    },
+    {
+      "id": "latent-space",
+      "title": "Latent Space",
+      "owner_type": "blogger",
+      "url": "https://www.latent.space/",
+      "mode": "html-links",
+      "allowed_domains": [
+        "www.latent.space"
+      ],
+      "include_url_patterns": [
+        "/p/"
+      ],
+      "exclude_url_patterns": [
+        "/search",
+        "/about"
+      ],
+      "keywords": [
+        "video",
+        "multimodal",
+        "model",
+        "creative",
+        "filmmaking"
+      ],
+      "max_candidates": 6,
+      "promote_into": [
+        "knowledge/wiki/concepts/skill-as-orchestrator.md"
+      ]
+    }
+  ]
+}

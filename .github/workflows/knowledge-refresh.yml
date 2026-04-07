@@ -1,0 +1,83 @@
+name: knowledge-refresh
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 2 * * *"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: knowledge-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    env:
+      GH_ISSUE_INBOX_TOKEN: ${{ secrets.GH_ISSUE_INBOX_TOKEN }}
+      GITHUB_TOKEN: ${{ github.token }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      KNOWLEDGE_REVIEW_MODEL: ${{ vars.KNOWLEDGE_REVIEW_MODEL }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Refresh knowledge watchlist
+        run: python .codex/skills/gen-video/scripts/refresh_knowledge.py
+
+      - name: Discover unseen knowledge candidates
+        run: python .codex/skills/gen-video/scripts/discover_knowledge_candidates.py
+
+      - name: Ingest GitHub issue inbox
+        run: python .codex/skills/gen-video/scripts/ingest_github_issue_sources.py
+
+      - name: Build nightly review packet
+        run: python .codex/skills/gen-video/scripts/build_nightly_review.py
+
+      - name: Synthesize nightly review
+        run: python .codex/skills/gen-video/scripts/synthesize_nightly_review.py
+
+      - name: Run semantic knowledge lint
+        run: python .codex/skills/gen-video/scripts/semantic_lint_knowledge.py
+
+      - name: Build query writeback queue
+        run: python .codex/skills/gen-video/scripts/build_query_writeback_queue.py
+
+      - name: Build knowledge suggestions
+        run: python .codex/skills/gen-video/scripts/build_knowledge_suggestions.py
+
+      - name: Commit and push generated knowledge updates
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No knowledge updates to commit."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .codex/skills/gen-video/knowledge
+          git commit -m "Keep the knowledge loop current and reviewable
+
+Constraint: Scheduled CI refresh must stay deterministic and low-noise
+Constraint: Issue inbox automation must not require manual triage on every run
+Constraint: Nightly review must preserve a human admit/reject gate
+Constraint: Automation must not rewrite wiki judgment directly
+Confidence: high
+Scope-risk: narrow
+Reversibility: clean
+Directive: Treat generated files as signals for maintainers, not as substitutes for distillation
+Tested: refresh, discovery, issue inbox, nightly review, lint, writeback, and suggestions scripts in GitHub Actions
+Not-tested: Upstream rate limiting, cross-repo issue permissions, watched feed stability, and credentialed LLM synthesis"
+          git push

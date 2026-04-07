@@ -1,0 +1,64 @@
+{
+  "queries": [
+    {
+      "id": "automation-surface",
+      "asked_at": "2026-04-06",
+      "source": "user-conversation",
+      "question": "这套机制的自动复核、找出不一致、更新是在哪里做呢",
+      "importance": "high",
+      "status": "resolved",
+      "resolved_by": [
+        "knowledge/wiki/operations/knowledge-automation-surface.md",
+        "knowledge/schema/maintenance-playbook.md"
+      ],
+      "promote_into": [
+        "knowledge/wiki/operations/knowledge-automation-surface.md"
+      ],
+      "tags": [
+        "automation",
+        "ci",
+        "closed-loop"
+      ],
+      "notes": "需要明确自动复核、找不一致、建议更新和人工改写之间的职责边界。"
+    },
+    {
+      "id": "karpathy-gap",
+      "asked_at": "2026-04-06",
+      "source": "user-conversation",
+      "question": "现在的做法和卡帕西的思路还有什么不同吗",
+      "importance": "high",
+      "status": "resolved",
+      "resolved_by": [
+        "knowledge/wiki/concepts/karpathy-gap-analysis.md"
+      ],
+      "promote_into": [
+        "knowledge/wiki/concepts/karpathy-gap-analysis.md"
+      ],
+      "tags": [
+        "karpathy",
+        "knowledge-base",
+        "gap-analysis"
+      ],
+      "notes": "需要把当前实现与 raw knowledge base + LLM wiki 的差距系统化写出来，避免口头回答丢失。"
+    },
+    {
+      "id": "blogger-watchlist-coverage",
+      "asked_at": "2026-04-06",
+      "source": "user-conversation",
+      "question": "其他新模型、著名 bloger 分享经验等，怎么持续补进来并形成闭环",
+      "importance": "high",
+      "status": "pending",
+      "resolved_by": [],
+      "promote_into": [
+        "knowledge/wiki/concepts/karpathy-gap-analysis.md",
+        "knowledge/discovery-registry.json"
+      ],
+      "tags": [
+        "discovery",
+        "blogger",
+        "watchlist"
+      ],
+      "notes": "发现层已接上 blogger watchlists，但当前候选输出仍偏官方，后续需要扩 watchlist 质量和筛选规则。"
+    }
+  ]
+}

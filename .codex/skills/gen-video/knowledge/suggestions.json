@@ -1,0 +1,224 @@
+{
+  "suggestions": [
+    {
+      "evidence": [
+        "knowledge/candidates.md",
+        "knowledge/discovery-registry.json"
+      ],
+      "id": "blogger-discovery-gap",
+      "kind": "discovery-gap",
+      "priority": "high",
+      "reason": "blogger watchlists exist, but the latest discovery run surfaced 0 blogger candidates",
+      "title": "Strengthen blogger discovery coverage",
+      "update_targets": [
+        "knowledge/discovery-registry.json",
+        "knowledge/wiki/concepts/karpathy-gap-analysis.md",
+        "knowledge/log.md"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/query-log.json"
+      ],
+      "id": "query-blogger-watchlist-coverage",
+      "kind": "query-writeback",
+      "priority": "high",
+      "reason": "high-value user question is still pending distillation into persistent knowledge",
+      "title": "Write back recurring question `blogger-watchlist-coverage`",
+      "update_targets": [
+        "knowledge/wiki/concepts/karpathy-gap-analysis.md",
+        "knowledge/discovery-registry.json"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/candidates.md"
+      ],
+      "id": "candidate-luma-news-introducing-camera-angle-concepts",
+      "kind": "candidate-promotion",
+      "priority": "medium",
+      "reason": "untracked official candidate from `luma-news` matched camera",
+      "title": "Review discovery candidate: Introducing Camera Angle Concepts",
+      "update_targets": [
+        "knowledge/source-registry.json",
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/candidates.md"
+      ],
+      "id": "candidate-luma-news-introducing-camera-motion-concepts",
+      "kind": "candidate-promotion",
+      "priority": "medium",
+      "reason": "untracked official candidate from `luma-news` matched camera",
+      "title": "Review discovery candidate: Introducing Camera Motion Concepts",
+      "update_targets": [
+        "knowledge/source-registry.json",
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/candidates.md"
+      ],
+      "id": "candidate-luma-news-introducing-modify-video",
+      "kind": "candidate-promotion",
+      "priority": "medium",
+      "reason": "untracked official candidate from `luma-news` matched video",
+      "title": "Review discovery candidate: Introducing Modify Video",
+      "update_targets": [
+        "knowledge/source-registry.json",
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/candidates.md"
+      ],
+      "id": "candidate-luma-news-introducing-ray3-modify",
+      "kind": "candidate-promotion",
+      "priority": "medium",
+      "reason": "untracked official candidate from `luma-news` matched ray3",
+      "title": "Review discovery candidate: Introducing Ray3 Modify",
+      "update_targets": [
+        "knowledge/source-registry.json",
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/candidates.md"
+      ],
+      "id": "candidate-runway-news-introducing-the-gen-4-image-api-runway-may-16-20",
+      "kind": "candidate-promotion",
+      "priority": "medium",
+      "reason": "untracked official candidate from `runway-news` matched gen-4, image",
+      "title": "Review discovery candidate: Introducing the Gen-4 Image API Runway / May 16, 2025",
+      "update_targets": [
+        "knowledge/source-registry.json",
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/candidates.md"
+      ],
+      "id": "candidate-runway-news-introducing-the-runway-api-for-gen-3-alpha-turbo",
+      "kind": "candidate-promotion",
+      "priority": "medium",
+      "reason": "untracked official candidate from `runway-news` matched gen-3",
+      "title": "Review discovery candidate: Introducing the Runway API for Gen-3 Alpha Turbo Runway / September 16, 2024",
+      "update_targets": [
+        "knowledge/source-registry.json",
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/candidates.md"
+      ],
+      "id": "candidate-luma-news-luma-ai-launches-ray3",
+      "kind": "candidate-promotion",
+      "priority": "medium",
+      "reason": "untracked official candidate from `luma-news` matched ray3",
+      "title": "Review discovery candidate: Luma AI launches Ray3",
+      "update_targets": [
+        "knowledge/source-registry.json",
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/candidates.md"
+      ],
+      "id": "candidate-luma-news-ray3-evaluation-report-state-of-the-art-performa",
+      "kind": "candidate-promotion",
+      "priority": "medium",
+      "reason": "untracked official candidate from `luma-news` matched ray3, video",
+      "title": "Review discovery candidate: Ray3 Evaluation Report – State-of-the-Art Performance for Pro Video Generation",
+      "update_targets": [
+        "knowledge/source-registry.json",
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/candidates.md"
+      ],
+      "id": "candidate-luma-news-ray314-is-here-native-1080p-3x-cheaper-and-4x-fa",
+      "kind": "candidate-promotion",
+      "priority": "medium",
+      "reason": "untracked official candidate from `luma-news` matched ray3",
+      "title": "Review discovery candidate: Ray3.14 is here: Native 1080p, 3x cheaper and 4x faster.",
+      "update_targets": [
+        "knowledge/source-registry.json",
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/candidates.md"
+      ],
+      "id": "candidate-runway-news-runway-advances-video-generation-and-world-model",
+      "kind": "candidate-promotion",
+      "priority": "medium",
+      "reason": "untracked official candidate from `runway-news` matched video",
+      "title": "Review discovery candidate: Runway Advances Video Generation and World Models With NVIDIA Rubin Platform Runway / January 5, 2026",
+      "update_targets": [
+        "knowledge/source-registry.json",
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/candidates.md"
+      ],
+      "id": "candidate-luma-news-serviceplan-group-deploys-creative-ai-across-glo",
+      "kind": "candidate-promotion",
+      "priority": "medium",
+      "reason": "untracked official candidate from `luma-news` matched creative",
+      "title": "Review discovery candidate: Serviceplan Group Deploys Creative AI Across Global Operations in Partnership with Luma AI",
+      "update_targets": [
+        "knowledge/source-registry.json",
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/nightly-review.md",
+        "https://public.grugnotes.com/keizo/blog/text-editing-at-the-speed-of-thought/"
+      ],
+      "id": "nightly-hackernews-an-experiment-in-voice-text-editing-with-gemini-",
+      "kind": "nightly-review",
+      "priority": "medium",
+      "reason": "nightly review surfaced a new community item from `Hacker News`",
+      "title": "Review nightly intelligence item: An experiment in voice text editing with Gemini Live",
+      "update_targets": [
+        "knowledge/wiki/concepts/karpathy-gap-analysis.md",
+        "knowledge/source-registry.json"
+      ]
+    },
+    {
+      "evidence": [
+        "knowledge/nightly-review.md",
+        "https://blog.laurentcharignon.com/post/2025-12-14-homelab-deployment-flow/"
+      ],
+      "id": "nightly-hackernews-i-deploy-apps-to-my-homelab-a-love-story-in-9-ac",
+      "kind": "nightly-review",
+      "priority": "medium",
+      "reason": "nightly review surfaced a new community item from `Hacker News`",
+      "title": "Review nightly intelligence item: I Deploy Apps to My Homelab (A Love Story in 9 Acts)",
+      "update_targets": [
+        "knowledge/wiki/concepts/karpathy-gap-analysis.md",
+        "knowledge/source-registry.json"
+      ]
+    }
+  ],
+  "summary": {
+    "high": 2,
+    "low": 0,
+    "medium": 13,
+    "total": 15
+  }
+}

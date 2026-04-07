@@ -1,0 +1,155 @@
+{
+  "candidates": [
+    {
+      "matched_keywords": [
+        "camera"
+      ],
+      "owner_type": "official",
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ],
+      "title": "Introducing Camera Angle Concepts",
+      "url": "https://lumalabs.ai/news/camera-angle-concepts",
+      "watch_id": "luma-news",
+      "watch_title": "Luma News"
+    },
+    {
+      "matched_keywords": [
+        "camera"
+      ],
+      "owner_type": "official",
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ],
+      "title": "Introducing Camera Motion Concepts",
+      "url": "https://lumalabs.ai/news/camera-motion-concepts",
+      "watch_id": "luma-news",
+      "watch_title": "Luma News"
+    },
+    {
+      "matched_keywords": [
+        "video"
+      ],
+      "owner_type": "official",
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ],
+      "title": "Introducing Modify Video",
+      "url": "https://lumalabs.ai/news/introducing-modify-video",
+      "watch_id": "luma-news",
+      "watch_title": "Luma News"
+    },
+    {
+      "matched_keywords": [
+        "ray3"
+      ],
+      "owner_type": "official",
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ],
+      "title": "Introducing Ray3 Modify",
+      "url": "https://lumalabs.ai/news/ray3-modify",
+      "watch_id": "luma-news",
+      "watch_title": "Luma News"
+    },
+    {
+      "matched_keywords": [
+        "ray3"
+      ],
+      "owner_type": "official",
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ],
+      "title": "Luma AI launches Ray3",
+      "url": "https://lumalabs.ai/news/ray3",
+      "watch_id": "luma-news",
+      "watch_title": "Luma News"
+    },
+    {
+      "matched_keywords": [
+        "ray3",
+        "video"
+      ],
+      "owner_type": "official",
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ],
+      "title": "Ray3 Evaluation Report – State-of-the-Art Performance for Pro Video Generation",
+      "url": "https://lumalabs.ai/news/ray3-eval",
+      "watch_id": "luma-news",
+      "watch_title": "Luma News"
+    },
+    {
+      "matched_keywords": [
+        "ray3"
+      ],
+      "owner_type": "official",
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ],
+      "title": "Ray3.14 is here: Native 1080p, 3x cheaper and 4x faster.",
+      "url": "https://lumalabs.ai/news/ray3_14",
+      "watch_id": "luma-news",
+      "watch_title": "Luma News"
+    },
+    {
+      "matched_keywords": [
+        "creative"
+      ],
+      "owner_type": "official",
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ],
+      "title": "Serviceplan Group Deploys Creative AI Across Global Operations in Partnership with Luma AI",
+      "url": "https://lumalabs.ai/news/serviceplan-group-deploys-creative-ai-across-global-operations-in-partnership-with-luma-ai",
+      "watch_id": "luma-news",
+      "watch_title": "Luma News"
+    },
+    {
+      "matched_keywords": [
+        "gen-4",
+        "image"
+      ],
+      "owner_type": "official",
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ],
+      "title": "Introducing the Gen-4 Image API Runway / May 16, 2025",
+      "url": "https://runwayml.com/news/introducing-runway-api-for-gen-4-images",
+      "watch_id": "runway-news",
+      "watch_title": "Runway News"
+    },
+    {
+      "matched_keywords": [
+        "gen-3"
+      ],
+      "owner_type": "official",
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ],
+      "title": "Introducing the Runway API for Gen-3 Alpha Turbo Runway / September 16, 2024",
+      "url": "https://runwayml.com/news/introducing-the-runway-api",
+      "watch_id": "runway-news",
+      "watch_title": "Runway News"
+    },
+    {
+      "matched_keywords": [
+        "video"
+      ],
+      "owner_type": "official",
+      "promote_into": [
+        "knowledge/wiki/concepts/promotion-and-retirement.md"
+      ],
+      "title": "Runway Advances Video Generation and World Models With NVIDIA Rubin Platform Runway / January 5, 2026",
+      "url": "https://runwayml.com/news/runway-partners-with-nvidia",
+      "watch_id": "runway-news",
+      "watch_title": "Runway News"
+    }
+  ],
+  "summary": {
+    "blogger_candidates": 0,
+    "fetch_failures": 0,
+    "official_candidates": 11,
+    "total_candidates": 11
+  }
+}

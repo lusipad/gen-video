@@ -1,0 +1,107 @@
+{
+  "sources": [
+    {
+      "capture_path": "raw/captures/http-metadata/gemini-31-flash-image-model-card.json",
+      "compiled_target_missing": [],
+      "due_date": "2026-04-13",
+      "id": "gemini-31-flash-image-model-card",
+      "metadata_changed": false,
+      "metadata_ok": true,
+      "review_state": "healthy",
+      "scope": "nano-banana-2",
+      "source_card": "raw/sources/2026-04-06_gemini-31-flash-image-model-card.source.md",
+      "volatility": "hot"
+    },
+    {
+      "capture_path": "raw/captures/http-metadata/google-flow-home.json",
+      "compiled_target_missing": [],
+      "due_date": "2026-04-13",
+      "id": "google-flow-home",
+      "metadata_changed": false,
+      "metadata_ok": true,
+      "review_state": "healthy",
+      "scope": "google-flow",
+      "source_card": "raw/sources/2026-04-06_google-flow-home.source.md",
+      "volatility": "hot"
+    },
+    {
+      "capture_path": "raw/captures/http-metadata/seedance-20-launch.json",
+      "compiled_target_missing": [],
+      "due_date": "2026-04-13",
+      "id": "seedance-20-launch",
+      "metadata_changed": false,
+      "metadata_ok": true,
+      "review_state": "healthy",
+      "scope": "seedance",
+      "source_card": "raw/sources/2026-04-06_seedance-20-launch.source.md",
+      "volatility": "hot"
+    },
+    {
+      "capture_path": "raw/captures/http-metadata/seedance-home.json",
+      "compiled_target_missing": [],
+      "due_date": "2026-04-13",
+      "id": "seedance-home",
+      "metadata_changed": false,
+      "metadata_ok": true,
+      "review_state": "healthy",
+      "scope": "seedance",
+      "source_card": "raw/sources/2026-04-06_seedance-home.source.md",
+      "volatility": "hot"
+    },
+    {
+      "capture_path": "raw/captures/http-metadata/veo-model-home.json",
+      "compiled_target_missing": [],
+      "due_date": "2026-04-13",
+      "id": "veo-model-home",
+      "metadata_changed": false,
+      "metadata_ok": true,
+      "review_state": "healthy",
+      "scope": "veo",
+      "source_card": "raw/sources/2026-04-06_veo-model-home.source.md",
+      "volatility": "hot"
+    },
+    {
+      "capture_path": "raw/captures/http-metadata/gemini-25-flash-image-blog.json",
+      "compiled_target_missing": [],
+      "due_date": "2026-04-27",
+      "id": "gemini-25-flash-image-blog",
+      "metadata_changed": false,
+      "metadata_ok": true,
+      "review_state": "healthy",
+      "scope": "nano-banana",
+      "source_card": "raw/sources/2026-04-06_gemini-25-flash-image-blog.source.md",
+      "volatility": "warm"
+    },
+    {
+      "capture_path": "raw/captures/http-metadata/karpathy-llm-wiki.json",
+      "compiled_target_missing": [],
+      "due_date": "2026-05-06",
+      "id": "karpathy-llm-wiki",
+      "metadata_changed": false,
+      "metadata_ok": true,
+      "review_state": "healthy",
+      "scope": "knowledge-management",
+      "source_card": "raw/sources/2026-04-06_karpathy-llm-wiki.source.md",
+      "volatility": "cold"
+    },
+    {
+      "capture_path": "raw/captures/http-metadata/sentrysearch.json",
+      "compiled_target_missing": [],
+      "due_date": "2026-05-07",
+      "id": "sentrysearch",
+      "metadata_changed": false,
+      "metadata_ok": true,
+      "review_state": "healthy",
+      "scope": "local-video-search",
+      "source_card": "raw/sources/2026-04-07_sentrysearch.source.md",
+      "volatility": "warm"
+    }
+  ],
+  "summary": {
+    "compiled_target_missing": 0,
+    "due_soon": 0,
+    "healthy": 8,
+    "metadata_changed": 0,
+    "overdue": 0
+  }
+}

@@ -1,0 +1,24 @@
+name: Knowledge Source
+description: 用 issue 把值得跟踪的模型、平台更新、blog 或经验帖放进知识库 inbox
+title: "[Knowledge] "
+labels:
+  - knowledge-source
+body:
+  - type: textarea
+    id: urls
+    attributes:
+      label: URLs
+      description: 每行一个链接。CI 会提取这些链接并汇总后关闭 issue。
+      placeholder: |
+        https://example.com/post
+        https://example.com/another-post
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Why It Matters
+      description: 简短写一下这条来源为什么值得进入知识库。
+      placeholder: 例如：新模型发布、工作流更新、知名创作者经验总结、平台能力变化
+    validations:
+      required: false

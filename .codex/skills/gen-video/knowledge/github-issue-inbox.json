@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "mode": "repo",
+  "repo": "lusipad/gen-video",
+  "labels": [
+    "knowledge-source"
+  ],
+  "include_issue_comments": true,
+  "close_processed_issues": true,
+  "comment_on_close": true,
+  "max_issues_per_run": 20,
+  "assigned_repo_allowlist": [],
+  "assigned_repo_blocklist": []
+}

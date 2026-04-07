@@ -1,0 +1,79 @@
+{
+  "enabled": true,
+  "keywords": [
+    "video",
+    "image",
+    "workflow",
+    "multimodal",
+    "filmmaking",
+    "creative",
+    "veo",
+    "flow",
+    "seedance",
+    "runway",
+    "luma",
+    "gemini",
+    "dream machine"
+  ],
+  "hackernews": {
+    "enabled": true,
+    "mode": "newstories",
+    "scan_limit": 60,
+    "max_items": 10
+  },
+  "feeds": [
+    {
+      "id": "youtube-channel-example",
+      "enabled": false,
+      "title": "Example YouTube Channel",
+      "provider": "rss",
+      "url": "https://www.youtube.com/feeds/videos.xml?channel_id=REPLACE_ME",
+      "owner_type": "creator",
+      "keywords": [
+        "veo",
+        "flow",
+        "workflow",
+        "video"
+      ],
+      "review_into": [
+        "knowledge/wiki/concepts/karpathy-gap-analysis.md"
+      ]
+    },
+    {
+      "id": "bilibili-rss-example",
+      "enabled": false,
+      "title": "Example Bilibili Feed Bridge",
+      "provider": "rss",
+      "url": "https://example.invalid/bilibili-feed.xml",
+      "owner_type": "creator",
+      "keywords": [
+        "workflow",
+        "video",
+        "creative"
+      ],
+      "review_into": [
+        "knowledge/wiki/concepts/karpathy-gap-analysis.md"
+      ]
+    },
+    {
+      "id": "x-rss-example",
+      "enabled": false,
+      "title": "Example X Feed Bridge",
+      "provider": "rss",
+      "url": "https://example.invalid/x-feed.xml",
+      "owner_type": "creator",
+      "keywords": [
+        "model",
+        "workflow",
+        "agent"
+      ],
+      "review_into": [
+        "knowledge/wiki/concepts/karpathy-gap-analysis.md"
+      ]
+    }
+  ],
+  "review": {
+    "max_review_items": 20,
+    "human_gate": "manual-admit"
+  }
+}
