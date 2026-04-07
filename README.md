@@ -3,6 +3,7 @@
 把 `故事概念` 变成 `可执行的生成式视频制作包`。  
 这个项目是一个面向 Codex 的 Skill，覆盖从 `剧本`、`分镜`、`素材清单` 到 `图片提示词`、`视频提示词`、`Google Flow 操作包` 的完整链路。
 它现在也包含一套 `nightly intelligence + knowledge review` 闭环，用来持续跟踪模型、平台和创作工作流变化。
+仓库本体不是独立 Web 产品，而是一个 `Codex skill package + knowledge automation repo`。
 
 > 为 `Veo 3.1`、`Nano Banana`、`Seedance` 和 `Google Flow` 准备的结构化生成式视频工作流。
 
@@ -21,6 +22,31 @@ Skill 调用名：`$gen-video`
 - 情绪片把 AI 写成主角，故事反而空了
 
 这个项目的目标，是把这些容易失控的环节前置成规则。
+
+## 这个仓库实际是什么
+
+如果只看仓库名，很容易误以为它是一个“直接生成视频”的产品。
+
+实际不是。
+
+这个仓库当前实际包含四类东西：
+
+- `Skill 定义`
+  也就是 `$gen-video` 的行为约束、输出结构、分流规则和默认交付方式。
+
+- `参考资料与执行模板`
+  也就是 `references/` 和 `examples/`，用于承接 `Google Flow`、`Veo`、`Nano Banana`、`Seedance` 等不同路线的实操资料。
+
+- `知识闭环`
+  也就是 `knowledge/`，负责来源卡、wiki、候选队列、nightly review、query writeback 和人工入库闸门。
+
+- `自动化脚本与 CI`
+  也就是 `scripts/` 和 `.github/workflows/knowledge-refresh.yml`，负责把知识库的巡检、发现、lint 和 nightly review 跑起来。
+
+所以 README 需要同时服务两种读者：
+
+- 使用 skill 的人
+- 维护 skill 和知识闭环的人
 
 ## 它解决什么问题
 
@@ -128,7 +154,10 @@ Skill 调用名：`$gen-video`
 
 ## Architecture
 
-这个项目现在按 `一个知识层 + 四个运行层` 组织：
+这个项目现在按 `一个技能面 + 一个知识层 + 四个运行层 + 一组自动化脚本` 组织：
+
+- `SKILL.md`
+  技能入口，决定用户请求如何被分流、约束和组织。
 
 - `knowledge`
   长期知识层，参考 Karpathy 提出的 `raw knowledge base + LLM wiki` 思路，负责沉淀原始资料、综合判断和更新日志。
@@ -144,6 +173,12 @@ Skill 调用名：`$gen-video`
 
 - `benchmarks`
   样题与评测模板，用来持续判断哪些旧规则已经可以退役。
+
+- `scripts`
+  知识自动化脚本，负责 refresh、discovery、lint、nightly review、suggestions 和 writeback。
+
+- `references`
+  实际写作和执行时会被高频引用的模型说明、模板库和工作流笔记。
 
 关系是：
 
@@ -224,6 +259,27 @@ Skill 调用名：`$gen-video`
 ```text
 $gen-video
 ```
+
+如果你是“用这个 skill 产出视频生产包”的使用者，通常只需要这一层入口。
+
+## 双入口
+
+这个仓库现在有两个真实入口，不应该混成一个理解。
+
+### 1. 使用者入口
+
+- 在 Codex 里调用 `$gen-video`
+- 给出故事、平台、模型栈和目标时长
+- 获取剧本、素材表、提示词和 `Flow` 操作包
+
+### 2. 维护者入口
+
+- 查看 [`SKILL.md`](./.codex/skills/gen-video/SKILL.md)
+- 查看 [`knowledge/index.md`](./.codex/skills/gen-video/knowledge/index.md)
+- 本地运行 `scripts/*.py`
+- 或直接依赖 [knowledge-refresh.yml](./.github/workflows/knowledge-refresh.yml) 的 nightly CI
+
+如果你现在关注的是“知识库怎么更新、nightly review 怎么跑、CI 在做什么”，应该优先走第 2 条入口，而不是只看 prompt 示例。
 
 示例 1：
 
@@ -353,15 +409,16 @@ $gen-video
 ├─ .codex/
 │  └─ skills/
 │     └─ gen-video/
-│        ├─ SKILL.md
 │        ├─ agents/
+│        │  └─ openai.yaml
+│        ├─ SKILL.md
 │        ├─ benchmarks/
 │        ├─ core/
 │        ├─ knowledge/
-│        ├─ scripts/
 │        ├─ modes/
 │        ├─ profiles/
-│        └─ references/
+│        ├─ references/
+│        └─ scripts/
 ├─ .github/
 │  ├─ ISSUE_TEMPLATE/
 │  │  └─ knowledge-source.yml
@@ -379,8 +436,14 @@ $gen-video
 
 ## 关键文件
 
+- [`agents/openai.yaml`](./.codex/skills/gen-video/agents/openai.yaml)
+  Skill 在宿主中的展示名、简述和默认调用提示。
+
 - [`SKILL.md`](./.codex/skills/gen-video/SKILL.md)
   主技能说明，定义模型选择门、平台分流、真实性要求、输出结构和质量检查。
+
+- [`references/`](./.codex/skills/gen-video/references)
+  高密度参考资料目录，包含 `Google Flow`、`Veo + Nano Banana`、`Seedance`、模板库、交付模板和工作流决策树。
 
 - [`core/output-contract.md`](./.codex/skills/gen-video/core/output-contract.md)
   稳定输出契约，定义无论走哪种生成路径，最后都应尽量交付什么。
@@ -435,6 +498,18 @@ $gen-video
 - [`knowledge/wiki/concepts/karpathy-gap-analysis.md`](./.codex/skills/gen-video/knowledge/wiki/concepts/karpathy-gap-analysis.md)
   解释当前实现和 Karpathy 风格 `raw knowledge base + LLM wiki` 之间已经补上的部分，以及还没完全做到的部分。
 
+- [`scripts/refresh_knowledge.py`](./.codex/skills/gen-video/scripts/refresh_knowledge.py)
+  刷新 tracked sources、source card、metadata capture、`status.md/json` 和 index 状态摘要。
+
+- [`scripts/build_nightly_review.py`](./.codex/skills/gen-video/scripts/build_nightly_review.py)
+  聚合 `HN + watched feeds + issue inbox/candidates 对照`，生成 `nightly-review.md/json`。
+
+- [`scripts/synthesize_nightly_review.py`](./.codex/skills/gen-video/scripts/synthesize_nightly_review.py)
+  在配置 LLM key 时生成审阅稿；未配置时退化成 prompt-pack。
+
+- [`scripts/build_knowledge_suggestions.py`](./.codex/skills/gen-video/scripts/build_knowledge_suggestions.py)
+  把 `status / candidates / nightly review / query log / issue inbox` 压成更新优先级。
+
 - [`knowledge/source-registry.json`](./.codex/skills/gen-video/knowledge/source-registry.json)
   持续跟踪的官方来源注册表，用来驱动自动刷新。
 
@@ -479,6 +554,7 @@ $gen-video
 
 目前这个项目已经完成这些增强：
 
+- 根入口已经明确分成 `skill 使用面` 与 `knowledge automation 维护面`
 - 现有视频生成主路径仍在，`knowledge / nightly review` 是增强层，不是替换层
 - 模型选择门已经收紧，避免未选模型就直接开写
 - `Google Flow` 已经从普通提示词输出升级为专项工作流
@@ -499,6 +575,23 @@ $gen-video
 - 视频本体级理解闭环
   目前更偏向识别标题、简介、feed 元信息和外部链接，还不是完整的视频内容理解流水线
 
+## 本地维护命令
+
+如果你要在本地复核这套知识闭环，常用命令是这些：
+
+```powershell
+python .codex/skills/gen-video/scripts/refresh_knowledge.py
+python .codex/skills/gen-video/scripts/discover_knowledge_candidates.py
+python .codex/skills/gen-video/scripts/ingest_github_issue_sources.py
+python .codex/skills/gen-video/scripts/build_nightly_review.py
+python .codex/skills/gen-video/scripts/synthesize_nightly_review.py
+python .codex/skills/gen-video/scripts/semantic_lint_knowledge.py
+python .codex/skills/gen-video/scripts/build_query_writeback_queue.py
+python .codex/skills/gen-video/scripts/build_knowledge_suggestions.py
+```
+
+只做一致性校验时，对应加 `--check` 即可。
+
 ## Roadmap
 
 - 增加官方文档、发布说明和 benchmark 结果的定期刷新机制
@@ -516,7 +609,7 @@ $gen-video
 
 ## Repository Status
 
-当前仓库更偏 `工作流原型 + 技能定义 + 知识闭环`，而不是完整产品化工具。  
+当前仓库更准确的定位是 `Codex skill package + references + knowledge automation`，而不是完整产品化工具。  
 现阶段重点在于：
 
 - 固化可复用的工作流规则
