@@ -1,0 +1,12 @@
+{
+  "entries": [],
+  "status": "ok",
+  "summary": {
+    "active_entries": 0,
+    "entries_with_missing_sources": 0,
+    "evidence_ready_entries": 0,
+    "ffmpeg_available": false,
+    "ffprobe_available": false,
+    "status": "ok"
+  }
+}

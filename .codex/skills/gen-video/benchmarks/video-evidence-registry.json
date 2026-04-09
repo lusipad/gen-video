@@ -1,0 +1,34 @@
+{
+  "enabled": true,
+  "default_extract": {
+    "minimum_sources": 2,
+    "max_sample_frames": 4
+  },
+  "entries": [
+    {
+      "id": "example-flow-video-review",
+      "enabled": false,
+      "title": "Example Flow Video Evidence",
+      "status": "pending",
+      "platform": "flow",
+      "video_path": "benchmarks/raw/video-review/REPLACE_ME.mp4",
+      "metadata_path": "benchmarks/raw/video-review/REPLACE_ME.metadata.json",
+      "transcript_path": "benchmarks/raw/video-review/REPLACE_ME.vtt",
+      "frame_notes_path": "benchmarks/raw/video-review/REPLACE_ME.frames.md",
+      "review_notes_path": "benchmarks/raw/video-review/REPLACE_ME.review.md",
+      "review_into": [
+        "benchmarks/video-review-registry.json",
+        "knowledge/log.md"
+      ],
+      "extract": {
+        "minimum_sources": 2,
+        "sample_timestamps": [
+          "00:05.000",
+          "00:25.000",
+          "00:55.000"
+        ],
+        "frame_output_dir": "benchmarks/raw/video-review/extracted/example-flow-video-review"
+      }
+    }
+  ]
+}

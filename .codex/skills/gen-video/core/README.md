@@ -14,6 +14,7 @@
 ## 应该放在这里的内容
 
 - 输出契约
+- PDCA 闭环规则
 - 真实性锚点规则
 - 叙事结构规则
 - 质量检查表
@@ -27,3 +28,8 @@
 - 某个模型最近更擅长中英文哪一种提示词
 
 这些都应该放到 `profiles/`。
+
+建议先读：
+
+- [output-contract.md](output-contract.md)
+- [pdca-loop.md](pdca-loop.md)

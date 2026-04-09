@@ -1,17 +1,22 @@
 # 镜界.SKILL
 
-把 `故事概念` 变成 `可执行的生成式视频制作包`。  
-这个项目是一个面向 Codex 的 Skill，覆盖从 `剧本`、`分镜`、`素材清单` 到 `图片提示词`、`视频提示词`、`Google Flow 操作包` 的完整链路。
-它现在也包含一套 `nightly intelligence + knowledge review` 闭环，用来持续跟踪模型、平台和创作工作流变化。
-仓库本体不是独立 Web 产品，而是一个 `Codex skill package + knowledge automation repo`。
+`镜界.SKILL` 是一个会持续学习的 `AI 视频导演技能`。  
+它不替代 `Veo / Seedance / Nano Banana / Flow` 这些模型和平台去直接生成视频，而是负责判断：
 
-> 为 `Veo 3.1`、`Nano Banana`、`Seedance` 和 `Google Flow` 准备的结构化生成式视频工作流。
+- 这条视频为什么成立
+- 这条视频该怎么被做出来
+- 该用什么模型、什么平台、什么执行顺序
+- 哪些经验应该被学进下一次判断里
+
+然后把这个判断编排成 `可执行的视频生产方案`。
+
+> 一个会持续校准自己的 AI 视频导演技能。
 
 Skill 调用名：`$gen-video`
 
 ## Why
 
-大多数“视频提示词”方案的问题，不是不会写 prompt，而是缺少制作流程。
+大多数“视频提示词”方案的问题，不是不会写 prompt，而是缺少 `导演判断`。
 
 常见失败点通常出在这里：
 
@@ -23,34 +28,51 @@ Skill 调用名：`$gen-video`
 
 这个项目的目标，是把这些容易失控的环节前置成规则。
 
-## 这个仓库实际是什么
+## 定位
 
-如果只看仓库名，很容易误以为它是一个“直接生成视频”的产品。
+这个项目只有一个核心，不是两个东西拼起来：
 
-实际不是。
+`提升 AI 视频导演判断。`
 
-这个仓库当前实际包含四类东西：
+前台只有一件事：
 
-- `Skill 定义`
-  也就是 `$gen-video` 的行为约束、输出结构、分流规则和默认交付方式。
+- 把一个想法编排成可执行的视频方案
 
-- `参考资料与执行模板`
-  也就是 `references/` 和 `examples/`，用于承接 `Google Flow`、`Veo`、`Nano Banana`、`Seedance` 等不同路线的实操资料。
+包括：
 
-- `知识闭环`
-  也就是 `knowledge/`，负责来源卡、wiki、候选队列、nightly review、query writeback 和人工入库闸门。
+- 剧本
+- 分镜
+- 素材表
+- 提示词
+- Flow 操作包
+- 模型 / 平台分流
 
-- `自动化脚本与 CI`
-  也就是 `scripts/` 和 `.github/workflows/knowledge-refresh.yml`，负责把知识库的巡检、发现、lint 和 nightly review 跑起来。
+后台也只有一件事：
 
-所以 README 需要同时服务两种读者：
+- 让这个导演技能不会快速过时
 
-- 使用 skill 的人
-- 维护 skill 和知识闭环的人
+包括：
+
+- 学平台更新
+- 学创作者经验
+- 学视频内容
+- 学视频拍法
+- 把这些经验回写成更好的判断
+
+所以：
+
+- `学习` 不是第二个产品
+- `knowledge/` 不是第二个产品
+- `nightly review` 不是第二个产品
+- `video learning` 不是第二个产品
+
+它们都只是这个导演技能的 `后台学习与校准管线`。
+
+前台负责把当下这条片子做出来，后台负责让下一次导演判断更准。
 
 ## 它解决什么问题
 
-很多“视频提示词”项目只给一段 prompt，但真实制作通常需要更多：
+很多方案只给一段 prompt，但真实做视频需要的是：
 
 - 先选模型，而不是一上来就乱写
 - 先定平台，再决定交付形态
@@ -110,8 +132,28 @@ Skill 调用名：`$gen-video`
 - `视频来源分层处理`
   `YouTube` 优先 `feed / transcript`，`Bilibili` 优先 `metadata / 字幕 / ASR / 必要时切片上传`，不假设站内 URL 能直接像开放平台链接一样喂给模型。
 
+- `视频学习 digest`
+  支持把 `transcript / subtitle / notes` 拆成两类学习面：
+  - `content`
+    学视频内容、情绪、人物、结构
+  - `craft`
+    学分镜、镜头、剧本组织、提示词和工作流
+
+- `双 PDCA 闭环`
+  前台生成后必须复核交付是否合格，后台学习后必须复核新知识是否值得入库，不能把“脚本跑完”当成闭环完成。
+
+- `视频审片 verdict`
+  支持把生成后的视频证据整理成 `pass / fail / uncertain` 审片报告，优先定位失败镜头，而不是整条片盲目重跑。
+
+- `视频审片 Act 队列`
+  支持把审片 verdict 继续编译成结构化 `Act` 队列，明确区分 `fail -> 重做镜头`、`uncertain -> 补证据`、`pass -> 写回 benchmark / knowledge`。
+
 - `分层架构`
   把稳定规则、模型档案、执行模式和 benchmark 分开，避免 skill 因模型升级快速过时。
+
+上面这些能力都服务同一个目标：
+
+`让 AI 更像一个会做判断、会持续进步的视频导演，而不是一次性提示词生成器。`
 
 ## 能力范围
 
@@ -151,16 +193,17 @@ Skill 调用名：`$gen-video`
 9. 生成视频提示词
 10. 如果目标是 `Flow`，继续拆成镜头执行包
 11. 补充存帧、回灌与拼接建议
+12. 做一轮前台 `PDCA Check / Act`
 
 ## Architecture
 
-这个项目现在按 `一个技能面 + 一个知识层 + 四个运行层 + 一组自动化脚本` 组织：
+这个项目现在按 `一个导演技能的前台 + 一个持续学习的后台` 组织：
 
 - `SKILL.md`
-  技能入口，决定用户请求如何被分流、约束和组织。
+  前台入口，决定用户请求如何被分流、约束和组织。
 
 - `knowledge`
-  长期知识层，参考 Karpathy 提出的 `raw knowledge base + LLM wiki` 思路，负责沉淀原始资料、综合判断和更新日志。
+  后台记忆层，负责给导演判断提供原始资料、可复查经验和回写面。
 
 - `core`
   稳定规则，不随单个模型短期能力波动而频繁变化。
@@ -175,10 +218,10 @@ Skill 调用名：`$gen-video`
   样题与评测模板，用来持续判断哪些旧规则已经可以退役。
 
 - `scripts`
-  知识自动化脚本，负责 refresh、discovery、lint、nightly review、suggestions 和 writeback。
+  后台学习脚本，负责 refresh、discovery、nightly review、video learning、lint、suggestions 和 writeback。
 
 - `references`
-  实际写作和执行时会被高频引用的模型说明、模板库和工作流笔记。
+  前台执行时会被高频引用的模型说明、模板库和工作流笔记。
 
 关系是：
 
@@ -194,13 +237,41 @@ Skill 调用名：`$gen-video`
 - `benchmarks`
   反过来验证这些判断还准不准，并把结果回写知识库。
 
-这套结构的目标不是“写更多规则”，而是让 skill 在模型变强时学会后退。
+这套结构的目标不是“写更多规则”，而是让前台导演技能始终由一个可学习、可追溯、会退役旧判断的后台支撑。
 
-## Knowledge Loop
+## 双 PDCA 怎么闭环
 
-知识库不是附属文档，而是这个 skill 的上游记忆系统。
+这套系统现在不只要求“会生成”，也要求“会复核”。
 
-最小闭环如下：
+### 前台 PDCA
+
+- `Plan`
+  锁目标、模型、平台、mode、真实性锚点和交付物
+- `Do`
+  生成剧本、分镜、资产表、提示词和执行包
+- `Check`
+  审核这轮交付是否真的可执行、可信、连续、对题；如果已经生成了视频，则先整理 evidence bundle，再做结构化审片
+- `Act`
+  修当前输出，或把系统性问题写回 benchmark / profile / knowledge；如果已有成片 verdict，则继续生成 `video-review-actions.md/json` 决定重做、补证据或写回
+
+### 后台 PDCA
+
+- `Plan`
+  明确这轮到底在学什么问题
+- `Do`
+  用 nightly review、video learning、issue inbox、query writeback 收集信号
+- `Check`
+  判断新信息该 `admit / defer / reject`
+- `Act`
+  更新 `wiki / profiles / benchmarks / core / log`
+
+所以闭环不是“脚本跑完了”，而是 `Check` 和 `Act` 都真的发生了。
+
+## 导演后台怎么学习
+
+`knowledge/` 不是附属文档，而是这个 skill 的后台记忆系统。
+
+最小学习回路如下：
 
 1. 新来源先进入 `knowledge/raw`
 2. 重要结论整理进 `knowledge/wiki`
@@ -208,7 +279,7 @@ Skill 调用名：`$gen-video`
 4. 用 `benchmarks` 跑样题，检查这些规则是否仍然成立
 5. 把更新、失败点和退役决定写回 `knowledge/log.md`
 
-现在这条链路还多了一层自动化：
+现在这条学习回路又补上了自动化管线：
 
 - `source-registry.json` 维护可跟踪来源
 - CI 定时抓取来源 metadata，刷新 `knowledge/status.md`
@@ -223,10 +294,10 @@ Skill 调用名：`$gen-video`
 
 当前主路径已经是：
 
-1. nightly discovery
-2. nightly review
-3. optional LLM synthesis
-4. human admit / defer / reject
+1. 新信号发现
+2. 夜间审阅包生成
+3. 可选 LLM 综合
+4. 人工 admit / defer / reject
 5. 再决定是否进入 `source-registry`、`wiki` 或下游文档
 
 `issue inbox` 现在是补充入口，不是主入口。
@@ -262,24 +333,24 @@ $gen-video
 
 如果你是“用这个 skill 产出视频生产包”的使用者，通常只需要这一层入口。
 
-## 双入口
+## 前台与后台
 
-这个仓库现在有两个真实入口，不应该混成一个理解。
+这个仓库确实有两层面，但它们不是两个产品，而是同一个技能的前台和后台。
 
-### 1. 使用者入口
+### 1. 前台
 
 - 在 Codex 里调用 `$gen-video`
 - 给出故事、平台、模型栈和目标时长
 - 获取剧本、素材表、提示词和 `Flow` 操作包
 
-### 2. 维护者入口
+### 2. 后台
 
 - 查看 [`SKILL.md`](./.codex/skills/gen-video/SKILL.md)
 - 查看 [`knowledge/index.md`](./.codex/skills/gen-video/knowledge/index.md)
 - 本地运行 `scripts/*.py`
 - 或直接依赖 [knowledge-refresh.yml](./.github/workflows/knowledge-refresh.yml) 的 nightly CI
 
-如果你现在关注的是“知识库怎么更新、nightly review 怎么跑、CI 在做什么”，应该优先走第 2 条入口，而不是只看 prompt 示例。
+如果你现在关注的是“这个技能怎么持续学习、怎么持续校准”，就看后台；如果你现在关注的是“怎么把这条片子做出来”，就看前台。
 
 示例 1：
 
@@ -352,7 +423,7 @@ $gen-video
 这意味着当前仓库已经支持：
 
 - 把 `YouTube RSS / watched feeds / HN / GitHub issue inbox` 纳入 nightly review
-- 把“视频相关经验帖”纳入知识闭环
+- 把“视频相关经验帖”纳入导演后台学习链路
 - 把“是否值得入库”留给人工最终判断
 
 当前仓库还没有完整做完的是：
@@ -360,6 +431,11 @@ $gen-video
 - `YouTube` 视频本体级理解的正式流水线
 - `Bilibili / X` 的稳定原生 adapter
 - 从 nightly review 直接投递到你的外部通知面
+
+但现在已经补上了更稳的第一步：
+
+- `transcript / subtitle / notes` 驱动的视频学习 digest
+- 也就是先把视频拆成可审阅文本，再提炼要点并接回导演后台
 
 ## 成本分层
 
@@ -448,6 +524,9 @@ $gen-video
 - [`core/output-contract.md`](./.codex/skills/gen-video/core/output-contract.md)
   稳定输出契约，定义无论走哪种生成路径，最后都应尽量交付什么。
 
+- [`core/pdca-loop.md`](./.codex/skills/gen-video/core/pdca-loop.md)
+  定义前台 PDCA 和后台 PDCA 的硬规则，避免“生成完就算完成”或“抓到新信息就当学会了”。
+
 - [`knowledge/README.md`](./.codex/skills/gen-video/knowledge/README.md)
   长期知识层入口，说明 `raw / wiki / schema / log` 之间的职责分工。
 
@@ -486,6 +565,12 @@ $gen-video
 - [`knowledge/nightly-review.json`](./.codex/skills/gen-video/knowledge/nightly-review.json)
   夜间审阅包的结构化数据版本，便于后续接 admit / defer / reject 工作流。
 
+- [`knowledge/video-learning-registry.json`](./.codex/skills/gen-video/knowledge/video-learning-registry.json)
+  视频学习入口配置，用来登记要拆解的视频、字幕或 notes 文件，以及后续 review 落点。
+
+- [`knowledge/video-learning.md`](./.codex/skills/gen-video/knowledge/video-learning.md)
+  transcript / subtitle / notes 驱动的视频学习 digest，提炼 highlights、priority takeaways、内容要点和拍法要点。
+
 - [`knowledge/query-log.json`](./.codex/skills/gen-video/knowledge/query-log.json)
   显式记录 recurring question，避免闭环只围绕来源刷新而不围绕真实使用问题。
 
@@ -508,7 +593,19 @@ $gen-video
   在配置 LLM key 时生成审阅稿；未配置时退化成 prompt-pack。
 
 - [`scripts/build_knowledge_suggestions.py`](./.codex/skills/gen-video/scripts/build_knowledge_suggestions.py)
-  把 `status / candidates / nightly review / query log / issue inbox` 压成更新优先级。
+  把 `status / candidates / nightly review / video learning / video review actions / query log / issue inbox` 压成更新优先级。
+
+- [`scripts/build_video_learning_digest.py`](./.codex/skills/gen-video/scripts/build_video_learning_digest.py)
+  读取 `video-learning-registry.json` 和本地 transcript / subtitle / notes，产出可审阅的视频学习 digest。
+
+- [`scripts/build_video_evidence_bundle.py`](./.codex/skills/gen-video/scripts/build_video_evidence_bundle.py)
+  读取 `video-evidence-registry.json` 和原始视频证据，先整理出统一的 evidence bundle，判断当前是否已经有足够证据进入正式审片。
+
+- [`scripts/build_video_review_report.py`](./.codex/skills/gen-video/scripts/build_video_review_report.py)
+  读取 `video-review-registry.json`，对照 `metadata + transcript + frame notes + review notes` 产出结构化视频审片报告；配置了 `VIDEO_REVIEW_MODEL` 时，可进一步生成 LLM verdict。
+
+- [`scripts/build_video_review_action_queue.py`](./.codex/skills/gen-video/scripts/build_video_review_action_queue.py)
+  读取 `video-review.json`，把 `pass / fail / uncertain` verdict 编译成明确的后续动作队列，并把写回目标展开成可执行 `Act` 面板。
 
 - [`knowledge/source-registry.json`](./.codex/skills/gen-video/knowledge/source-registry.json)
   持续跟踪的官方来源注册表，用来驱动自动刷新。
@@ -524,6 +621,33 @@ $gen-video
 
 - [`benchmarks/README.md`](./.codex/skills/gen-video/benchmarks/README.md)
   benchmark 入口，用来持续比较不同模式和不同模型路径的效果。
+
+- [`benchmarks/output-review-template.md`](./.codex/skills/gen-video/benchmarks/output-review-template.md)
+  前台交付后的复核模板，用来把 `Check / Act` 结构化。
+
+- [`benchmarks/video-review-registry.json`](./.codex/skills/gen-video/benchmarks/video-review-registry.json)
+  生成后视频的审片入口配置，用来登记视频文件、字幕、关键帧说明和验收条件。
+
+- [`benchmarks/video-evidence-registry.json`](./.codex/skills/gen-video/benchmarks/video-evidence-registry.json)
+  视频证据标准化入口配置，用来登记 `video / metadata / transcript / frame notes / review notes` 这些原始证据。
+
+- [`benchmarks/video-evidence.md`](./.codex/skills/gen-video/benchmarks/video-evidence.md)
+  视频审片前的证据面板，用来先确认 transcript、marker 和 metadata 是否足够。
+
+- [`benchmarks/video-review.md`](./.codex/skills/gen-video/benchmarks/video-review.md)
+  自动审片输出面板，汇总 `heuristic checks + LLM/manual review + final verdict`。
+
+- [`benchmarks/video-review-actions.md`](./.codex/skills/gen-video/benchmarks/video-review-actions.md)
+  审片后的 `Act` 面板，用来区分应该重做的失败镜头、应补的缺失证据，以及该写回的通过样例。
+
+- [`benchmarks/raw/video-review/README.md`](./.codex/skills/gen-video/benchmarks/raw/video-review/README.md)
+  说明如何准备 `mp4 / metadata / transcript / frames.md / review.md` 这套审片证据。
+
+- [`knowledge/schema/knowledge-review-template.md`](./.codex/skills/gen-video/knowledge/schema/knowledge-review-template.md)
+  后台学习信号的审阅模板，用来判断新知识应 `admit / defer / reject`。
+
+- [`knowledge/wiki/workflows/video-review-loop.md`](./.codex/skills/gen-video/knowledge/wiki/workflows/video-review-loop.md)
+  解释“原始证据 -> evidence bundle -> review verdict -> act”这条视频审片闭环。
 
 - [`references/google-flow-notes.md`](./.codex/skills/gen-video/references/google-flow-notes.md)
   `Google Flow` 专项说明，强调 `素材图 -> 镜头 -> 存帧 -> 回灌 -> Scenebuilder` 的执行路径，以及 `Flow` 直贴场景下中文提示词也可直接使用。
@@ -554,16 +678,20 @@ $gen-video
 
 目前这个项目已经完成这些增强：
 
-- 根入口已经明确分成 `skill 使用面` 与 `knowledge automation 维护面`
-- 现有视频生成主路径仍在，`knowledge / nightly review` 是增强层，不是替换层
+- 核心定位已经明确收口到 `AI 视频导演技能`
+- 现有视频生成主路径仍在，`knowledge / nightly review / video learning` 是增强层，不是替换层
+- 前台和后台都已明确要求走 `PDCA`，不再把“脚本完成”误当成闭环完成
 - 模型选择门已经收紧，避免未选模型就直接开写
 - `Google Flow` 已经从普通提示词输出升级为专项工作流
 - 真实题材与非遗题材增加了真实性锚点要求
 - 儿童角色场景增加了平台内语音依赖限制说明
 - Skill 调用名已统一保持为 `gen-video`
 - skill 已扩成 `knowledge + core / profiles / modes / benchmarks` 结构
-- 已接入 nightly review 主路径，开始做夜间情报聚合与人工入库闸门
+- 已接入夜间审阅主路径，开始做夜间情报聚合与人工入库闸门
 - 已支持 HN 和 watched feeds 审阅包生成
+- 已支持 transcript / subtitle / notes 驱动的视频学习 digest
+- 已支持 `raw evidence -> evidence bundle -> review verdict -> action queue` 的结构化视频审片闭环
+- 已支持把视频审片结果继续接入 `knowledge/suggestions`，让失败项和证据缺口进入后台维护优先级
 - 已支持可选 LLM 审阅稿生成
 - 已明确 `API-first + human gate` 的执行边界，用来减少网页等待和失败重跑成本
 - 已明确 `YouTube / Bilibili / X` 的分层来源处理思路
@@ -573,11 +701,11 @@ $gen-video
 - 可直接替代网页操作的大一统 vendor executor
 - Bilibili / X 的稳定原生 source adapter
 - 视频本体级理解闭环
-  目前更偏向识别标题、简介、feed 元信息和外部链接，还不是完整的视频内容理解流水线
+  目前已经补到 `transcript / subtitle / notes` 驱动的学习层，但还不是完整的 `mp4 / 镜头级` 视频理解流水线
 
 ## 本地维护命令
 
-如果你要在本地复核这套知识闭环，常用命令是这些：
+如果你要在本地复核这套导演后台，常用命令是这些：
 
 ```powershell
 python .codex/skills/gen-video/scripts/refresh_knowledge.py
@@ -585,6 +713,10 @@ python .codex/skills/gen-video/scripts/discover_knowledge_candidates.py
 python .codex/skills/gen-video/scripts/ingest_github_issue_sources.py
 python .codex/skills/gen-video/scripts/build_nightly_review.py
 python .codex/skills/gen-video/scripts/synthesize_nightly_review.py
+python .codex/skills/gen-video/scripts/build_video_learning_digest.py
+python .codex/skills/gen-video/scripts/build_video_evidence_bundle.py
+python .codex/skills/gen-video/scripts/build_video_review_report.py
+python .codex/skills/gen-video/scripts/build_video_review_action_queue.py
 python .codex/skills/gen-video/scripts/semantic_lint_knowledge.py
 python .codex/skills/gen-video/scripts/build_query_writeback_queue.py
 python .codex/skills/gen-video/scripts/build_knowledge_suggestions.py
@@ -594,30 +726,37 @@ python .codex/skills/gen-video/scripts/build_knowledge_suggestions.py
 
 ## Roadmap
 
-- 增加官方文档、发布说明和 benchmark 结果的定期刷新机制
-- 增加 `API-first` 的批处理 / executor 路线，尽量把可程序化环节从网页等待里剥离出来
-- 增加 YouTube 视频级理解
-  优先走字幕 / transcript，再补视频理解
-- 增加 Bilibili / X 的稳定 feed bridge 或 source adapter
-- 增加 nightly review 的对外投递面
-  例如 issue / 邮件 / 消息通知等 review 出口
-- 增加 admit / defer / reject 的正式 review workflow
-- 增加更多 `Flow` 实操模板
-- 增加更多长片结构案例
-- 增加不同情绪类型的剧本骨架
-- 增加更细的镜头语言模板和镜头时长建议
+后续路线现在应按“导演能力”拆，而不是按散乱功能堆叠：
+
+- `导演判断更准`
+  增加更多长片结构案例、情绪骨架、镜头语言模板和真实性约束。
+
+- `学习能力更强`
+  增加视频学习 digest 的 admit / defer / compiled 状态流转，继续补 creator 学习、平台更新和案例拆解。
+
+- `执行能力更稳`
+  增加 `API-first` 的批处理 / executor 路线，尽量把可程序化环节从网页等待里剥离出来。
+
+- `视频理解更深`
+  从字幕 / transcript 继续往视频本体理解推进，再逐步补 Bilibili / X adapter 和更强的片段级学习。
+
+- `投递和协同更顺`
+  增加 nightly review 的对外投递面和更正式的 admit / defer / reject workflow。
 
 ## Repository Status
 
-当前仓库更准确的定位是 `Codex skill package + references + knowledge automation`，而不是完整产品化工具。  
+当前仓库最准确的定位是：
+
+`一个会持续学习的 AI 视频导演技能`
+
+从实现形态上，它是一个以 `Codex skill` 形式运行的导演系统：前台负责产出视频方案，后台负责持续学习和校准；它还不是完整产品化工具。  
 现阶段重点在于：
 
-- 固化可复用的工作流规则
-- 建立可持续更新的知识库和规则退役机制
-- 用 CI 自动维护来源 watchlist 和复查节奏
-- 用夜间情报系统持续扫新模型、新技能、新经验分享来源
-- 用 nightly review + LLM synthesis + human gate 控制入库节奏
-- 用 lint / suggestions / writeback 把知识维护补成真正闭环
-- 积累参考资料与模板
+- 稳住导演判断
+- 建立可持续更新的后台记忆层和规则退役机制
+- 用 CI 自动维护这个导演技能的学习节奏
+- 用夜间情报系统持续扫新模型、新技能和新经验
+- 用 `nightly review + LLM synthesis + human gate` 控制后台自我校准节奏
+- 用视频学习 digest 把“看内容”和“学拍法”都接进同一套导演学习回路
+- 积累参考资料、模板和案例
 - 验证真实题材、长片结构和 Flow 路线下的稳定输出方式
-- 为后续 `API-first executor` 和更稳的多平台视频理解打地基

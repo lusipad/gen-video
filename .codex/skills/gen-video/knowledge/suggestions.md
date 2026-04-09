@@ -1,6 +1,6 @@
 # Knowledge Suggestions
 
-Generated from `status.json`, `candidates.json`, `issue-inbox.json`, `nightly-review.json`, `query-log.json`, and discovery/source registries by `scripts/build_knowledge_suggestions.py`.
+Generated from `status.json`, `candidates.json`, `issue-inbox.json`, `nightly-review.json`, `video-learning.json`, `video-review-actions.json`, `query-log.json`, and discovery/source registries by `scripts/build_knowledge_suggestions.py`.
 
 ## High Priority
 

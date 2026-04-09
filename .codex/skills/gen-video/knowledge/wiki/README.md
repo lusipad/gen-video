@@ -10,3 +10,4 @@
 - 当来源失效或 benchmark 反证时，优先改 wiki，再决定是否改下游文档
 - 高频用户问题应先登记到 `../query-log.json`，再决定写成哪一页
 - 写完或改完页面后，应用 `../lint.md` 和 `../suggestions.md` 回看结构一致性与优先级
+- 新知识在进入 wiki 前，应先完成一轮 `Check / Act`

@@ -2,6 +2,8 @@
 
 这个文件定义 `knowledge/` 的维护契约。
 
+它的目标不是堆文档，而是保证导演后台能稳定服务前台的导演判断。
+
 ## 层级定义
 
 - `raw/`
@@ -57,6 +59,12 @@
 
 - `nightly-review-llm.md`
   LLM 综合层。把 nightly review 压成一份高信号 review brief。
+
+- `video-learning-registry.json`
+  视频学习入口层。定义要拆解的视频、transcript / notes 路径、状态和 review 目标。
+
+- `video-learning.md`
+  视频学习审阅层。把 transcript / subtitle / notes 压成 highlights、takeaways 和术语命中。
 
 ## 页面要求
 
@@ -139,6 +147,34 @@
 - `feeds`
 - `review`
 
+### Video Learning Config
+
+最少字段：
+
+- `enabled`
+- `default_extract`
+- `term_vocab`
+- `entries`
+
+每个 entry 额外建议至少包含：
+
+- `learning_mode`
+  `content` 或 `craft`
+- `focus`
+  当前更想提炼的学习维度
+
+### Knowledge Review Record
+
+建议至少包含：
+
+- `signal`
+- `question`
+- `evidence`
+- `review_verdict`
+- `impact_scope`
+- `act_targets`
+- `next_review_at` 或 `defer_reason`
+
 ## Freshness 级别
 
 - `hot`
@@ -152,6 +188,8 @@
 
 ## 维护原则
 
+- `knowledge/` 服务导演判断，不把后台维护误当成独立产品
+- 新学习信号必须先过 `Check`，再进入 `Act`
 - 来源先入 `raw/`，不要跳过证据层
 - 新发现先入 `candidates.md`，不要直接跳到 `source-registry.json`
 - 新 query 先入 `query-log.json`，不要只停留在聊天记录里
@@ -163,3 +201,7 @@
 - 只有能直接改变执行的判断才编译进 `profiles/`
 - 只有长期稳定的判断才晋升到 `core/`
 - benchmark 结果必须回写 `log.md`
+
+推荐直接使用：
+
+- [knowledge-review-template.md](knowledge-review-template.md)

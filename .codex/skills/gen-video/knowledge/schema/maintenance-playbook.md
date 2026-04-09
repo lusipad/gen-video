@@ -1,5 +1,18 @@
 # Maintenance Playbook
 
+这个 playbook 只回答一件事：怎样维护导演后台，让下一次导演判断更准。
+
+默认按 `PDCA` 理解：
+
+- `Plan`
+  明确当前学习问题、目标落点和复查标准
+- `Do`
+  采集、整理、蒸馏新信号
+- `Check`
+  判断这些信号是否真的成立
+- `Act`
+  把结论写回长期知识或明确拒绝 / 延后
+
 ## Ingest
 
 1. 为新来源创建 `raw/sources/*.source.md`
@@ -13,11 +26,26 @@
 2. 补 `Sources`
 3. 写清这次变化会影响什么执行判断
 
+## Check
+
+1. 使用 `knowledge-review-template.md` 审阅新信号
+2. 明确 `admit / defer / reject`
+3. 检查是否与现有 `wiki / profiles / core` 冲突
+4. 只有通过 `Check` 的内容才进入下一步 `Act`
+
 ## Write Back
 
 1. 把高价值 recurring question 登记进 `../query-log.json`
 2. 用 `writeback-queue.md` 看哪些问题还没沉淀
 3. 决定是新建 wiki，还是补已有页面
+
+## Act
+
+1. 根据 `Check` 结果决定是 `admit / defer / reject`
+2. `admit` 时更新 `wiki/`，必要时编译到 `profiles/`、`benchmarks/` 或 `core/`
+3. `defer` 时写清等待什么新证据
+4. `reject` 时记录原因，避免以后重复消耗
+5. 所有动作写入 `log.md`
 
 ## Discover
 
@@ -37,7 +65,17 @@
 1. `nightly-review-registry.json` 定义夜间采集入口
 2. `build_nightly_review.py` 聚合 HN 与 watched feeds
 3. `synthesize_nightly_review.py` 用 LLM 或 prompt-pack 生成 nightly review brief
-4. 维护者只根据 review 做 admit / defer / reject，不直接让夜间抓取结果自动入库
+4. 维护者只根据 review 做 admit / defer / reject，不直接让夜间抓取结果自动入库，而是先判断它是否值得写回导演后台
+
+## Video Learning
+
+1. `video-learning-registry.json` 登记要学习的视频条目
+2. 把 `transcript / subtitle / notes` 放进 `raw/video-learning/`
+3. 为每条视频显式标记 `learning_mode`
+   - `content`：学习主题、人物、情绪、结构
+   - `craft`：学习分镜、镜头、脚本、提示词、工作流
+4. `build_video_learning_digest.py` 提取 highlights、priority takeaways、content takeaways、craft takeaways 和术语命中
+5. 维护者据此判断是否更新 `wiki/`、`profiles/` 或 `source-registry.json`，从而改进下一次导演判断
 
 ## Compile
 
@@ -71,5 +109,9 @@
 ## CI
 
 1. `.github/workflows/knowledge-refresh.yml` 按计划运行 refresh 脚本
-2. CI 负责维护来源卡、metadata capture、status 面板、candidates 队列、issue inbox、nightly review、LLM review、lint、suggestions、writeback queue 和 index 摘要
+2. CI 负责维护来源卡、metadata capture、status 面板、candidates 队列、issue inbox、nightly review、video learning digest、LLM review、lint、suggestions、writeback queue 和 index 摘要
 3. `wiki/` 的综合判断仍由人工更新，再决定是否编译到 `profiles/` 或 `core/`
+
+这些步骤共同组成后台学习管线，而不是单独的第二套产品。
+
+重点不是“脚本跑完了”，而是 `Check` 和 `Act` 是否真的完成。

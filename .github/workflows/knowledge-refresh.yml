@@ -48,6 +48,9 @@ jobs:
       - name: Synthesize nightly review
         run: python .codex/skills/gen-video/scripts/synthesize_nightly_review.py
 
+      - name: Build video learning digest
+        run: python .codex/skills/gen-video/scripts/build_video_learning_digest.py
+
       - name: Run semantic knowledge lint
         run: python .codex/skills/gen-video/scripts/semantic_lint_knowledge.py
 
@@ -73,11 +76,12 @@ jobs:
 Constraint: Scheduled CI refresh must stay deterministic and low-noise
 Constraint: Issue inbox automation must not require manual triage on every run
 Constraint: Nightly review must preserve a human admit/reject gate
+Constraint: Video learning digest must stay transcript-driven until a stronger video pipeline is intentionally added
 Constraint: Automation must not rewrite wiki judgment directly
 Confidence: high
 Scope-risk: narrow
 Reversibility: clean
 Directive: Treat generated files as signals for maintainers, not as substitutes for distillation
-Tested: refresh, discovery, issue inbox, nightly review, lint, writeback, and suggestions scripts in GitHub Actions
-Not-tested: Upstream rate limiting, cross-repo issue permissions, watched feed stability, and credentialed LLM synthesis"
+Tested: refresh, discovery, issue inbox, nightly review, video learning digest, lint, writeback, and suggestions scripts in GitHub Actions
+Not-tested: Upstream rate limiting, cross-repo issue permissions, watched feed stability, transcript availability, and credentialed LLM synthesis"
           git push

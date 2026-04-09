@@ -1,0 +1,237 @@
+{
+  "enabled": true,
+  "default_extract": {
+    "max_highlights": 8,
+    "max_takeaways": 5,
+    "max_content_takeaways": 5,
+    "max_craft_takeaways": 5,
+    "max_terms": 10
+  },
+  "term_vocab": [
+    {
+      "id": "google-flow",
+      "category": "craft",
+      "aliases": [
+        "google flow",
+        "flow",
+        "scenebuilder",
+        "ingredients",
+        "frames",
+        "extend"
+      ]
+    },
+    {
+      "id": "veo",
+      "category": "craft",
+      "aliases": [
+        "veo",
+        "veo 3",
+        "veo 3.1"
+      ]
+    },
+    {
+      "id": "seedance",
+      "category": "craft",
+      "aliases": [
+        "seedance"
+      ]
+    },
+    {
+      "id": "runway",
+      "category": "craft",
+      "aliases": [
+        "runway",
+        "gen-4",
+        "gen-3"
+      ]
+    },
+    {
+      "id": "luma",
+      "category": "craft",
+      "aliases": [
+        "luma",
+        "dream machine",
+        "ray3"
+      ]
+    },
+    {
+      "id": "gemini",
+      "category": "craft",
+      "aliases": [
+        "gemini",
+        "nano banana"
+      ]
+    },
+    {
+      "id": "transcript",
+      "category": "craft",
+      "aliases": [
+        "transcript",
+        "subtitle",
+        "subtitles",
+        "caption",
+        "captions",
+        "字幕",
+        "转录",
+        "口播"
+      ]
+    },
+    {
+      "id": "continuity",
+      "category": "craft",
+      "aliases": [
+        "continuity",
+        "一致性",
+        "连续性",
+        "角色一致"
+      ]
+    },
+    {
+      "id": "camera",
+      "category": "craft",
+      "aliases": [
+        "camera",
+        "shot",
+        "frame",
+        "镜头",
+        "运镜"
+      ]
+    },
+    {
+      "id": "audio",
+      "category": "craft",
+      "aliases": [
+        "audio",
+        "voice",
+        "sound",
+        "music",
+        "音效",
+        "旁白",
+        "配音"
+      ]
+    },
+    {
+      "id": "story",
+      "category": "content",
+      "aliases": [
+        "story",
+        "plot",
+        "beat",
+        "剧情",
+        "故事",
+        "桥段",
+        "反转"
+      ]
+    },
+    {
+      "id": "character",
+      "category": "content",
+      "aliases": [
+        "character",
+        "hero",
+        "protagonist",
+        "人物",
+        "主角",
+        "角色"
+      ]
+    },
+    {
+      "id": "emotion",
+      "category": "content",
+      "aliases": [
+        "emotion",
+        "feeling",
+        "tear",
+        "哭",
+        "催泪",
+        "情绪",
+        "共情"
+      ]
+    },
+    {
+      "id": "structure",
+      "category": "content",
+      "aliases": [
+        "structure",
+        "arc",
+        "ending",
+        "opening",
+        "结尾",
+        "开场",
+        "结构",
+        "弧线"
+      ]
+    }
+  ],
+  "entries": [
+    {
+      "id": "example-youtube-content",
+      "enabled": false,
+      "title": "Example Creator Content Study",
+      "platform": "youtube",
+      "creator": "Example Creator",
+      "url": "https://www.youtube.com/watch?v=REPLACE_ME",
+      "published_at": "",
+      "language": "zh",
+      "learning_mode": "content",
+      "focus": [
+        "story",
+        "emotion",
+        "structure"
+      ],
+      "status": "pending",
+      "transcript_path": "knowledge/raw/video-learning/REPLACE_ME.vtt",
+      "notes_path": "",
+      "tags": [
+        "video",
+        "creator"
+      ],
+      "review_into": [
+        "knowledge/wiki/workflows/video-learning-loop.md",
+        "knowledge/source-registry.json"
+      ],
+      "extract": {
+        "max_highlights": 8,
+        "max_takeaways": 5,
+        "max_content_takeaways": 5,
+        "max_craft_takeaways": 3,
+        "max_terms": 10
+      }
+    },
+    {
+      "id": "example-youtube-craft",
+      "enabled": false,
+      "title": "Example Creator Craft Study",
+      "platform": "youtube",
+      "creator": "Example Creator",
+      "url": "https://www.youtube.com/watch?v=REPLACE_ME",
+      "published_at": "",
+      "language": "zh",
+      "learning_mode": "craft",
+      "focus": [
+        "camera",
+        "workflow",
+        "continuity"
+      ],
+      "status": "pending",
+      "transcript_path": "knowledge/raw/video-learning/REPLACE_ME.vtt",
+      "notes_path": "knowledge/raw/video-learning/REPLACE_ME.notes.md",
+      "tags": [
+        "workflow",
+        "video",
+        "creator"
+      ],
+      "review_into": [
+        "knowledge/wiki/workflows/video-learning-loop.md",
+        "knowledge/source-registry.json"
+      ],
+      "extract": {
+        "max_highlights": 8,
+        "max_takeaways": 5,
+        "max_content_takeaways": 3,
+        "max_craft_takeaways": 5,
+        "max_terms": 10
+      }
+    }
+  ]
+}

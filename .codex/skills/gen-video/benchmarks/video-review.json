@@ -1,0 +1,12 @@
+{
+  "entries": [],
+  "status": "ok",
+  "summary": {
+    "active_entries": 0,
+    "fail_entries": 0,
+    "llm_generated_entries": 0,
+    "pass_entries": 0,
+    "status": "ok",
+    "uncertain_entries": 0
+  }
+}

@@ -20,6 +20,7 @@ DISCOVERY_REGISTRY_PATH = KNOWLEDGE_DIR / "discovery-registry.json"
 QUERY_LOG_PATH = KNOWLEDGE_DIR / "query-log.json"
 ISSUE_INBOX_CONFIG_PATH = KNOWLEDGE_DIR / "github-issue-inbox.json"
 NIGHTLY_REVIEW_CONFIG_PATH = KNOWLEDGE_DIR / "nightly-review-registry.json"
+VIDEO_LEARNING_CONFIG_PATH = KNOWLEDGE_DIR / "video-learning-registry.json"
 LINT_MD_PATH = KNOWLEDGE_DIR / "lint.md"
 LINT_JSON_PATH = KNOWLEDGE_DIR / "lint.json"
 INDEX_PATH = KNOWLEDGE_DIR / "index.md"
@@ -117,6 +118,7 @@ def collect_issues() -> list[Issue]:
     issues.extend(check_query_targets())
     issues.extend(check_issue_inbox_config())
     issues.extend(check_nightly_review_config())
+    issues.extend(check_video_learning_config())
     issues.extend(check_orphan_wiki_pages())
     return sorted(
         issues,
@@ -368,6 +370,80 @@ def check_nightly_review_config() -> list[Issue]:
                 path=relpath_to_skill(NIGHTLY_REVIEW_CONFIG_PATH),
             )
         )
+    return issues
+
+
+def check_video_learning_config() -> list[Issue]:
+    issues: list[Issue] = []
+    payload = load_json(VIDEO_LEARNING_CONFIG_PATH)
+    required = {
+        "enabled": bool,
+        "default_extract": dict,
+        "term_vocab": list,
+        "entries": list,
+    }
+    for key, expected_type in required.items():
+        if key not in payload:
+            issues.append(
+                Issue(
+                    severity="error",
+                    code="missing-video-learning-config-key",
+                    message=f"video learning config is missing key: {key}",
+                    path=relpath_to_skill(VIDEO_LEARNING_CONFIG_PATH),
+                )
+            )
+            continue
+        if not isinstance(payload[key], expected_type):
+            issues.append(
+                Issue(
+                    severity="error",
+                    code="invalid-video-learning-config-type",
+                    message=f"video learning config key {key} must be {expected_type.__name__}",
+                    path=relpath_to_skill(VIDEO_LEARNING_CONFIG_PATH),
+                )
+            )
+    for entry in payload.get("entries", []):
+        entry_id = entry.get("id", "<unknown>")
+        for key in ["id", "enabled", "title", "platform", "creator", "url", "learning_mode", "status", "review_into"]:
+            if key not in entry:
+                issues.append(
+                    Issue(
+                        severity="error",
+                        code="missing-video-learning-entry-key",
+                        message=f"video learning entry {entry_id} is missing key: {key}",
+                        path=relpath_to_skill(VIDEO_LEARNING_CONFIG_PATH),
+                    )
+                )
+        review_into = entry.get("review_into", [])
+        if entry.get("learning_mode") not in {"content", "craft"}:
+            issues.append(
+                Issue(
+                    severity="error",
+                    code="invalid-video-learning-mode",
+                    message=f"video learning entry {entry_id} learning_mode must be content or craft",
+                    path=relpath_to_skill(VIDEO_LEARNING_CONFIG_PATH),
+                )
+            )
+        if not isinstance(review_into, list):
+            issues.append(
+                Issue(
+                    severity="error",
+                    code="invalid-video-learning-review-into",
+                    message=f"video learning entry {entry_id} review_into must be a list",
+                    path=relpath_to_skill(VIDEO_LEARNING_CONFIG_PATH),
+                )
+            )
+            continue
+        for target in review_into:
+            if not link_target_exists(target):
+                issues.append(
+                    Issue(
+                        severity="error",
+                        code="missing-video-learning-target",
+                        message=f"video learning entry {entry_id} points to a missing review target: {target}",
+                        path=relpath_to_skill(VIDEO_LEARNING_CONFIG_PATH),
+                    )
+                )
     return issues
 
 

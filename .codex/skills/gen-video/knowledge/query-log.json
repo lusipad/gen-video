@@ -59,6 +59,28 @@
         "watchlist"
       ],
       "notes": "发现层已接上 blogger watchlists，但当前候选输出仍偏官方，后续需要扩 watchlist 质量和筛选规则。"
+    },
+    {
+      "id": "video-learning-loop",
+      "asked_at": "2026-04-07",
+      "source": "user-conversation",
+      "question": "继续增加学习的能力，让其可以拆解视频、提炼要点，作为后续参考的依据",
+      "importance": "high",
+      "status": "resolved",
+      "resolved_by": [
+        "knowledge/wiki/workflows/video-learning-loop.md",
+        "knowledge/video-learning-registry.json",
+        "knowledge/video-learning.md"
+      ],
+      "promote_into": [
+        "knowledge/wiki/workflows/video-learning-loop.md"
+      ],
+      "tags": [
+        "video-learning",
+        "transcript",
+        "knowledge-loop"
+      ],
+      "notes": "第一版先走 transcript / subtitle / notes 驱动的 digest，不直接解码 mp4。"
     }
   ]
 }

@@ -1,0 +1,63 @@
+{
+  "enabled": true,
+  "default_review": {
+    "max_evidence_chars": 6000
+  },
+  "entries": [
+    {
+      "id": "example-flow-video-review",
+      "enabled": false,
+      "title": "Example Flow Video Review",
+      "status": "pending",
+      "goal": "检查一条剧情视频是否对准 brief，并确认是否只需要局部重做镜头。",
+      "evidence_id": "example-flow-video-review",
+      "video_path": "benchmarks/raw/video-review/REPLACE_ME.mp4",
+      "metadata_path": "benchmarks/raw/video-review/REPLACE_ME.metadata.json",
+      "transcript_path": "benchmarks/raw/video-review/REPLACE_ME.vtt",
+      "frame_notes_path": "benchmarks/raw/video-review/REPLACE_ME.frames.md",
+      "review_notes_path": "benchmarks/raw/video-review/REPLACE_ME.review.md",
+      "acceptance_criteria": [
+        "主角身份、地点和核心道具与 brief 保持一致",
+        "关键剧情点已经出现，而不是只拍出情绪氛围",
+        "时长和画幅符合目标平台要求",
+        "输出可明确指出应重做的失败镜头，而不是笼统判差"
+      ],
+      "red_flags": [
+        "地点被拍成泛化古镇或泛化国风",
+        "高潮没有从真实动作或真实物件长出来",
+        "字幕或口播出现不该有的信息",
+        "整体通过与否无法给出证据"
+      ],
+      "checks": {
+        "duration_seconds": {
+          "min": 170,
+          "max": 190
+        },
+        "aspect_ratio": "9:16",
+        "must_include_transcript": [
+          "爷爷",
+          "滚灯"
+        ],
+        "must_exclude_transcript": [
+          "外星人"
+        ],
+        "must_include_evidence": [
+          "滚灯",
+          "孙女",
+          "奉贤"
+        ],
+        "must_exclude_evidence": [
+          "泛化古镇",
+          "赛博都市"
+        ]
+      },
+      "review_into": [
+        "benchmarks/output-review-template.md",
+        "knowledge/log.md"
+      ],
+      "review": {
+        "max_evidence_chars": 6000
+      }
+    }
+  ]
+}

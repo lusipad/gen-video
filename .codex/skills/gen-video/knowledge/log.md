@@ -12,6 +12,7 @@
 | 2026-04-06 | nightly-review | 建立 `nightly-review + nightly-review-llm` | 把 HN、watched feeds 和现有知识对照成夜间审阅包，并保留人工最终入库闸门 | 2026-04-07 |
 | 2026-04-06 | source | Karpathy LLM wiki pattern | 作为知识库分层方法的外部参考，并据此建立 `raw -> wiki -> compiled docs` 路径 | 2026-05-06 |
 | 2026-04-07 | source | SentrySearch local video retrieval | 记录本地视频语义检索这条补充路线，作为后续 `API-first` 视频理解前置召回层的外部参考 | 2026-05-07 |
+| 2026-04-07 | workflow | 建立 `video-learning-registry + build_video_learning_digest.py + video-learning.md` | 把视频 transcript / subtitle / notes 接进知识闭环，先生成 highlights 与 takeaways，再交给人工决定是否 distill | 2026-04-14 |
 
 ## Open Queue
 

@@ -1,0 +1,13 @@
+{
+  "actions": [],
+  "status": "ok",
+  "summary": {
+    "fail_actions": 0,
+    "high_priority_actions": 0,
+    "low_priority_actions": 0,
+    "medium_priority_actions": 0,
+    "pass_actions": 0,
+    "total_actions": 0,
+    "uncertain_actions": 0
+  }
+}

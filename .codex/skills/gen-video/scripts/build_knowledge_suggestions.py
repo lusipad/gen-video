@@ -19,6 +19,8 @@ SOURCE_REGISTRY_PATH = KNOWLEDGE_DIR / "source-registry.json"
 DISCOVERY_REGISTRY_PATH = KNOWLEDGE_DIR / "discovery-registry.json"
 ISSUE_INBOX_JSON_PATH = KNOWLEDGE_DIR / "issue-inbox.json"
 NIGHTLY_REVIEW_JSON_PATH = KNOWLEDGE_DIR / "nightly-review.json"
+VIDEO_LEARNING_JSON_PATH = KNOWLEDGE_DIR / "video-learning.json"
+VIDEO_REVIEW_ACTIONS_PATH = SKILL_DIR / "benchmarks" / "video-review-actions.json"
 SUGGESTIONS_MD_PATH = KNOWLEDGE_DIR / "suggestions.md"
 SUGGESTIONS_JSON_PATH = KNOWLEDGE_DIR / "suggestions.json"
 INDEX_PATH = KNOWLEDGE_DIR / "index.md"
@@ -99,6 +101,10 @@ def build_suggestions() -> list[Suggestion]:
     discovery_registry = load_json(DISCOVERY_REGISTRY_PATH)
     issue_inbox = load_json(ISSUE_INBOX_JSON_PATH) if ISSUE_INBOX_JSON_PATH.exists() else {"issues": []}
     nightly_review = load_json(NIGHTLY_REVIEW_JSON_PATH) if NIGHTLY_REVIEW_JSON_PATH.exists() else {"items": []}
+    video_learning = load_json(VIDEO_LEARNING_JSON_PATH) if VIDEO_LEARNING_JSON_PATH.exists() else {"entries": []}
+    video_review_actions = (
+        load_json(VIDEO_REVIEW_ACTIONS_PATH) if VIDEO_REVIEW_ACTIONS_PATH.exists() else {"actions": []}
+    )
 
     registry_map = {
         entry["id"]: entry
@@ -295,6 +301,67 @@ def build_suggestions() -> list[Suggestion]:
             )
         )
 
+    for entry in video_learning.get("entries", []):
+        status = entry.get("status", "pending")
+        if status not in {"pending", "reviewed"}:
+            continue
+        learning_mode = entry.get("learning_mode", "craft")
+        suggestions.append(
+            Suggestion(
+                suggestion_id=f"video-learning-{entry.get('id', 'entry')}",
+                priority="high" if status == "pending" else "medium",
+                kind="video-learning",
+                title=f"Distill {learning_mode} video learning item: {entry.get('title', 'Untitled')}",
+                reason=(
+                    "video learning digest extracted highlights and takeaways that are not yet fully "
+                    "compiled into long-term knowledge"
+                ),
+                update_targets=dedupe_targets(entry.get("review_into", []) + ["knowledge/log.md"]),
+                evidence=[
+                    "knowledge/video-learning.md",
+                    *[path for path in entry.get("source_files", [])[:2]],
+                ],
+            )
+        )
+
+    for action in video_review_actions.get("actions", []):
+        queue_status = action.get("queue_status", "pending")
+        if queue_status != "pending":
+            continue
+        final_verdict = action.get("final_verdict", "uncertain")
+        title = action.get("title", "Untitled")
+        if final_verdict == "fail":
+            suggestion_title = f"Repair failed video review: {title}"
+        elif final_verdict == "uncertain":
+            suggestion_title = f"Collect missing video review evidence: {title}"
+        else:
+            suggestion_title = f"Write back accepted video review: {title}"
+        priority = action.get("priority", "medium")
+        if priority not in PRIORITY_ORDER:
+            priority = "medium"
+        suggestions.append(
+            Suggestion(
+                suggestion_id=f"video-review-{action.get('id', 'entry')}",
+                priority=priority,
+                kind="video-review-action",
+                title=suggestion_title,
+                reason=action.get(
+                    "action_summary",
+                    "video review produced a follow-up PDCA act item",
+                ),
+                update_targets=dedupe_targets(
+                    action.get("act_targets", []) or ["benchmarks/video-review-registry.json"]
+                ),
+                evidence=dedupe_targets(
+                    [
+                        "benchmarks/video-review.md",
+                        "benchmarks/video-review-actions.md",
+                        *[path for path in action.get("evidence_files", [])[:2] if path],
+                    ]
+                ),
+            )
+        )
+
     suggestions.sort(
         key=lambda item: (
             PRIORITY_ORDER[item.priority],
@@ -357,7 +424,7 @@ def render_markdown(suggestions: list[Suggestion]) -> str:
     lines = [
         "# Knowledge Suggestions",
         "",
-        "Generated from `status.json`, `candidates.json`, `issue-inbox.json`, `nightly-review.json`, `query-log.json`, and discovery/source registries by `scripts/build_knowledge_suggestions.py`.",
+        "Generated from `status.json`, `candidates.json`, `issue-inbox.json`, `nightly-review.json`, `video-learning.json`, `video-review-actions.json`, `query-log.json`, and discovery/source registries by `scripts/build_knowledge_suggestions.py`.",
         "",
     ]
     if not suggestions:

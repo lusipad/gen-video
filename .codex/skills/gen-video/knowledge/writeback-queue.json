@@ -65,6 +65,30 @@
         "knowledge-base",
         "gap-analysis"
       ]
+    },
+    {
+      "asked_at": "2026-04-07",
+      "id": "video-learning-loop",
+      "importance": "high",
+      "missing_promote_targets": [],
+      "missing_resolutions": [],
+      "notes": "第一版先走 transcript / subtitle / notes 驱动的 digest，不直接解码 mp4。",
+      "promote_into": [
+        "knowledge/wiki/workflows/video-learning-loop.md"
+      ],
+      "question": "继续增加学习的能力，让其可以拆解视频、提炼要点，作为后续参考的依据",
+      "resolved_by": [
+        "knowledge/wiki/workflows/video-learning-loop.md",
+        "knowledge/video-learning-registry.json",
+        "knowledge/video-learning.md"
+      ],
+      "source": "user-conversation",
+      "status": "resolved",
+      "tags": [
+        "video-learning",
+        "transcript",
+        "knowledge-loop"
+      ]
     }
   ],
   "summary": {
@@ -72,7 +96,7 @@
     "broken_promote_targets": 0,
     "broken_resolution_links": 0,
     "pending_queries": 1,
-    "resolved_queries": 2,
-    "total_queries": 3
+    "resolved_queries": 3,
+    "total_queries": 4
   }
 }

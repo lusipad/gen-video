@@ -35,6 +35,23 @@
 - 节奏是否匹配时长
 - 高潮是否从真实动作或真实物件长出来
 - 结尾是否落在最该落的动作上
+- 是否已经过一轮明确的 `Check`
+- 如果存在风险，是否已经给出 `Act` 动作
+
+## 5. 复核层
+
+完成前必须补一段最小复核结论：
+
+- `Check verdict`
+  `pass / fail`
+- `Highest-risk gap`
+  当前最危险的问题是什么
+- `Act now`
+  这轮要立刻修什么
+- `Act later`
+  哪些问题应该回写到 benchmark、profile 或知识层
+
+如果 `Check verdict = fail`，则当前输出还不能算完成。
 
 ## 原则
 
@@ -53,3 +70,5 @@
 - skill 手工拆解
 
 不是第一优先级。
+
+生成路径之外，还必须经过 [pdca-loop.md](pdca-loop.md) 里的复核闭环。

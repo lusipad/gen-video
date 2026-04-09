@@ -1,5 +1,9 @@
 # Knowledge Index
 
+这里是 `镜界.SKILL` 的后台入口。
+
+如果前台负责把片子做出来，这里负责让下一次导演判断更准。
+
 建议按这个顺序进入知识库：
 
 1. [log.md](log.md)
@@ -10,11 +14,12 @@
 6. [lint.md](lint.md)
 7. [nightly-review.md](nightly-review.md)
 8. [nightly-review-llm.md](nightly-review-llm.md)
-9. [issue-inbox.md](issue-inbox.md)
-10. [writeback-queue.md](writeback-queue.md)
-11. [wiki/workflows/refresh-loop.md](wiki/workflows/refresh-loop.md)
-12. 对应主题的 wiki 页面
-13. 对应的 `profiles/*.md`
+9. [video-learning.md](video-learning.md)
+10. [issue-inbox.md](issue-inbox.md)
+11. [writeback-queue.md](writeback-queue.md)
+12. [wiki/workflows/refresh-loop.md](wiki/workflows/refresh-loop.md)
+13. 对应主题的 wiki 页面
+14. 对应的 `profiles/*.md`
 
 <!-- AUTO:STATUS:START -->
 - [status.md](status.md) is the CI-generated watchlist for review cadence and upstream metadata changes.
@@ -60,6 +65,13 @@
 - Human gate: `manual-admit`
 <!-- AUTO:NIGHTLY-REVIEW:END -->
 
+<!-- AUTO:VIDEO-LEARNING:START -->
+- [video-learning.md](video-learning.md) contains 0 transcript-driven video learning items.
+- Pending distillation items: 0
+- Modes: content=0, craft=0
+- Digest errors: 0
+<!-- AUTO:VIDEO-LEARNING:END -->
+
 <!-- AUTO:NIGHTLY-LLM:START -->
 - [nightly-review-llm.md](nightly-review-llm.md) is the synthesized review brief for the nightly intelligence packet.
 - LLM synthesis status: `skipped`
@@ -76,6 +88,12 @@
 - [wiki/workflows/refresh-loop.md](wiki/workflows/refresh-loop.md)
   定期刷新、编译和退役的维护流程。
 
+- [wiki/workflows/video-learning-loop.md](wiki/workflows/video-learning-loop.md)
+  解释如何把视频 transcript / notes 转成可审阅的学习 digest，再决定是否写回长期知识。
+
+- [wiki/workflows/video-review-loop.md](wiki/workflows/video-review-loop.md)
+  解释生成后视频如何先整理证据，再产出 `pass / fail / uncertain` 审片 verdict，并继续编译出 `Act` 队列。
+
 - [wiki/operations/knowledge-automation-surface.md](wiki/operations/knowledge-automation-surface.md)
   解释自动复核、lint、suggestion 和 query writeback 分别在哪一层执行。
 
@@ -87,6 +105,9 @@
 
 - [nightly-review-registry.json](nightly-review-registry.json)
   定义夜间情报采集入口，包括 HN 与 watched feeds。
+
+- [video-learning-registry.json](video-learning-registry.json)
+  定义视频学习条目、transcript / notes 路径和 distill 落点。
 
 ## 已登记来源
 

@@ -2,7 +2,11 @@
 
 这个页面回答一个具体问题：`自动复核、找出不一致、建议更新，到底分别在哪里做。`
 
-## 当前闭环分工
+它们共同组成 `镜界.SKILL` 的导演后台，而不是另一个独立产品。
+
+脚本本身并不等于闭环。闭环成立的前提，是这些自动化产物后面还有明确的 `Check` 和 `Act`。
+
+## 当前导演后台分工
 
 ### 1. 自动复核
 
@@ -77,6 +81,21 @@
 - 可选生成 `nightly-review-llm.md`
 - 明确保留人工 admit / reject gate
 
+### 3.9 视频学习 digest
+
+- `../../scripts/build_video_learning_digest.py`
+  负责把视频 transcript / subtitle / notes 压成学习 digest。
+- `../../video-learning-registry.json`
+  决定要处理哪些视频学习条目。
+
+这层做的事包括：
+
+- 读取本地 transcript / subtitle / notes
+- 提取 highlights
+- 提取 actionable takeaways
+- 统计术语和工作流命中
+- 生成 `video-learning.md / video-learning.json`
+
 ### 4. 建议下一步更新
 
 - `../../scripts/build_knowledge_suggestions.py`
@@ -87,7 +106,7 @@
 - 哪些 tracked source 该优先复审
 - 哪些候选来源该人工判断是否晋升
 - 哪些 recurring question 该写回长期知识
-- 哪些 discovery 缺口正在拖慢闭环
+- 哪些 discovery 缺口正在拖慢后台校准
 
 ### 5. 把会话问题写回长期知识
 
@@ -106,12 +125,13 @@
 - 某次 upstream 变化会如何改变执行策略
 - 某条经验应留在 wiki，还是晋升到 `profiles/`、`benchmarks/` 或 `core/`
 - benchmark 失败时，是该补规则，还是该退役旧规则
+- 某条学习信号最终应 `admit / defer / reject`
 
-这是刻意保留的人控层，不是缺陷。因为当前目标是 `低噪声、可追责、可 diff`，而不是让自动化在没有证据的情况下重写结论。
+这是刻意保留的人控层，不是缺陷。因为当前目标是让后台保持 `低噪声、可追责、可 diff`，而不是让自动化在没有证据的情况下重写结论。
 
-## 真正闭环怎么成立
+## 真正的导演后台怎么闭环
 
-当前闭环已经不是单点巡检，而是八段式：
+当前闭环已经不是单点巡检，而是九段式：
 
 1. `refresh_knowledge.py`
    复查已知来源
@@ -123,11 +143,13 @@
    做夜间情报汇总
 5. `synthesize_nightly_review.py`
    生成 nightly review brief
-6. `semantic_lint_knowledge.py`
+6. `build_video_learning_digest.py`
+   把视频 transcript / notes 变成学习 digest
+7. `semantic_lint_knowledge.py`
    找结构不一致
-7. `build_knowledge_suggestions.py`
+8. `build_knowledge_suggestions.py`
    生成更新优先级
-8. `build_query_writeback_queue.py`
+9. `build_query_writeback_queue.py`
    把用户问题转成长期 backlog
 
 然后才进入人工 distill：
@@ -136,7 +158,14 @@
 2. 需要时编译到 `profiles/` / `benchmarks/` / `core/`
 3. 在 `log.md` 记录这次判断
 
-这就是当前版本里“自动做什么、人工做什么”的边界。
+这就是当前版本里“后台自动做什么、人工做什么”的边界。
+
+换句话说：
+
+- 脚本主要负责 `Plan / Do`
+- 人工审阅负责真正的 `Check / Act`
+
+少了后半段，就不叫 PDCA，只能叫半自动采集。
 
 Compiled into:
 

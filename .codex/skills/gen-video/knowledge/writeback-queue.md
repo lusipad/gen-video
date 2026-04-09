@@ -22,3 +22,5 @@ Generated from `query-log.json` by `scripts/build_query_writeback_queue.py`.
   resolved_by: [`knowledge/wiki/operations/knowledge-automation-surface.md`](wiki/operations/knowledge-automation-surface.md), [`knowledge/schema/maintenance-playbook.md`](schema/maintenance-playbook.md)
 - `karpathy-gap` -> 现在的做法和卡帕西的思路还有什么不同吗
   resolved_by: [`knowledge/wiki/concepts/karpathy-gap-analysis.md`](wiki/concepts/karpathy-gap-analysis.md)
+- `video-learning-loop` -> 继续增加学习的能力，让其可以拆解视频、提炼要点，作为后续参考的依据
+  resolved_by: [`knowledge/wiki/workflows/video-learning-loop.md`](wiki/workflows/video-learning-loop.md), [`knowledge/video-learning-registry.json`](video-learning-registry.json), [`knowledge/video-learning.md`](video-learning.md)
